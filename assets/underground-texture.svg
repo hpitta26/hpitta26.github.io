@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Rock texture patterns -->
+    <pattern id="rockTexture1" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <rect width="100" height="100" fill="#1a1a1a"/>
+      <circle cx="20" cy="30" r="3" fill="#2a2a2a"/>
+      <circle cx="80" cy="70" r="2" fill="#3a3a3a"/>
+      <circle cx="40" cy="80" r="4" fill="#2d2d2d"/>
+      <circle cx="90" cy="20" r="2" fill="#333333"/>
+      <circle cx="60" cy="50" r="3" fill="#2a2a2a"/>
+      <circle cx="10" cy="90" r="2" fill="#3a3a3a"/>
+    </pattern>
+    
+    <pattern id="rockTexture2" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
+      <rect width="150" height="150" fill="#1a1a1a"/>
+      <ellipse cx="30" cy="40" rx="8" ry="5" fill="#2d2d2d"/>
+      <ellipse cx="120" cy="110" rx="6" ry="4" fill="#3a3a3a"/>
+      <ellipse cx="80" cy="30" rx="5" ry="7" fill="#2a2a2a"/>
+      <ellipse cx="40" cy="120" rx="7" ry="3" fill="#333333"/>
+      <ellipse cx="100" cy="80" rx="4" ry="6" fill="#2d2d2d"/>
+    </pattern>
+    
+    <!-- Cave wall texture -->
+    <pattern id="caveWall" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <rect width="200" height="200" fill="#1a1a1a"/>
+      <path d="M0 50 Q50 30 100 50 Q150 70 200 50" stroke="#2a2a2a" stroke-width="2" fill="none"/>
+      <path d="M0 100 Q50 80 100 100 Q150 120 200 100" stroke="#2d2d2d" stroke-width="1" fill="none"/>
+      <path d="M0 150 Q50 130 100 150 Q150 170 200 150" stroke="#333333" stroke-width="1.5" fill="none"/>
+      <circle cx="25" cy="25" r="2" fill="#3a3a3a"/>
+      <circle cx="175" cy="175" r="3" fill="#2a2a2a"/>
+      <circle cx="50" cy="180" r="2" fill="#3a3a3a"/>
+      <circle cx="150" cy="30" r="2" fill="#2d2d2d"/>
+    </pattern>
+    
+    <!-- Underground particles -->
+    <pattern id="caveParticles" x="0" y="0" width="300" height="300" patternUnits="userSpaceOnUse">
+      <circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/>
+      <circle cx="150" cy="100" r="0.5" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="250" cy="200" r="1.5" fill="rgba(255,255,255,0.08)"/>
+      <circle cx="100" cy="250" r="0.8" fill="rgba(255,255,255,0.06)"/>
+      <circle cx="200" cy="80" r="1" fill="rgba(255,255,255,0.07)"/>
+      <circle cx="75" cy="150" r="0.6" fill="rgba(255,255,255,0.04)"/>
+      <circle cx="225" cy="120" r="1.2" fill="rgba(255,255,255,0.09)"/>
+      <circle cx="125" cy="180" r="0.7" fill="rgba(255,255,255,0.05)"/>
+    </pattern>
+    
+    <!-- Rock formations -->
+    <pattern id="rockFormations" x="0" y="0" width="400" height="400" patternUnits="userSpaceOnUse">
+      <rect width="400" height="400" fill="#1a1a1a"/>
+      <!-- Large rock formations -->
+      <path d="M0 200 Q100 150 200 200 Q300 250 400 200 L400 400 L0 400 Z" fill="#2a2a2a"/>
+      <path d="M50 300 Q150 250 250 300 Q350 350 400 300 L400 400 L50 400 Z" fill="#2d2d2d"/>
+      <path d="M100 350 Q200 300 300 350 L300 400 L100 400 Z" fill="#333333"/>
+      <!-- Smaller rock details -->
+      <ellipse cx="80" cy="180" rx="15" ry="8" fill="#3a3a3a"/>
+      <ellipse cx="320" cy="220" rx="12" ry="6" fill="#2a2a2a"/>
+      <ellipse cx="160" cy="280" rx="10" ry="5" fill="#3a3a3a"/>
+    </pattern>
+    
+    <!-- Gradient overlays -->
+    <linearGradient id="undergroundGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2a2a2a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="caveDepth" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Base underground background -->
+  <rect width="1920" height="1080" fill="url(#undergroundGradient)"/>
+  
+  <!-- Rock texture layers -->
+  <rect width="1920" height="1080" fill="url(#rockTexture1)" opacity="0.3"/>
+  <rect width="1920" height="1080" fill="url(#rockTexture2)" opacity="0.2"/>
+  
+  <!-- Cave wall texture -->
+  <rect width="1920" height="1080" fill="url(#caveWall)" opacity="0.4"/>
+  
+  <!-- Rock formations -->
+  <rect width="1920" height="1080" fill="url(#rockFormations)" opacity="0.3"/>
+  
+  <!-- Cave particles -->
+  <rect width="1920" height="1080" fill="url(#caveParticles)" opacity="0.6"/>
+  
+  <!-- Depth overlay -->
+  <rect width="1920" height="1080" fill="url(#caveDepth)" opacity="0.2"/>
+  
+  <!-- Additional rock details -->
+  <g opacity="0.4">
+    <!-- Large rock formations -->
+    <path d="M0 400 Q480 300 960 400 Q1440 500 1920 400 L1920 1080 L0 1080 Z" fill="#2a2a2a"/>
+    <path d="M200 600 Q680 500 1160 600 Q1640 700 1920 600 L1920 1080 L200 1080 Z" fill="#2d2d2d"/>
+    <path d="M400 800 Q880 700 1360 800 L1360 1080 L400 1080 Z" fill="#333333"/>
+    
+    <!-- Smaller rock clusters -->
+    <ellipse cx="300" cy="500" rx="40" ry="20" fill="#3a3a3a"/>
+    <ellipse cx="1200" cy="450" rx="35" ry="18" fill="#2a2a2a"/>
+    <ellipse cx="800" cy="700" rx="30" ry="15" fill="#3a3a3a"/>
+    <ellipse cx="1600" cy="650" rx="25" ry="12" fill="#2d2d2d"/>
+  </g>
+  
+  <!-- Subtle lighting effects -->
+  <radialGradient id="caveLight" cx="50%" cy="30%" r="40%">
+    <stop offset="0%" style="stop-color:rgba(124,58,237,0.1);stop-opacity:1" />
+    <stop offset="100%" style="stop-color:rgba(124,58,237,0);stop-opacity:1" />
+  </radialGradient>
+  <rect width="1920" height="1080" fill="url(#caveLight)"/>
+</svg> 

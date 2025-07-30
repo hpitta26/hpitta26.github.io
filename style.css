@@ -139,56 +139,7 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-/* Projects Section - Underground */
-.projects.underground {
-    padding: 5rem 2rem;
-    background: #1a1a1a;
-    position: relative;
-    min-height: 100vh;
-}
 
-.underground-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
-
-.rock-texture {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 30%, #2a2a2a 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, #3a3a3a 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, #2d2d2d 0%, transparent 50%),
-        radial-gradient(circle at 90% 20%, #333333 0%, transparent 50%);
-    opacity: 0.3;
-}
-
-.cave-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(1px 1px at 10px 20px, rgba(255,255,255,0.1), transparent),
-        radial-gradient(1px 1px at 50px 80px, rgba(255,255,255,0.05), transparent),
-        radial-gradient(1px 1px at 100px 40px, rgba(255,255,255,0.08), transparent);
-    background-repeat: repeat;
-    background-size: 150px 100px;
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
 
 .projects-container {
     max-width: 1400px;
@@ -594,5 +545,41 @@ html {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.svg-display {
+    background: #f8f8f8;
+    border: 2px dashed #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comparison-svg {
+    max-width: 100%;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+}
+
+.comparison-item p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .comparison-section h2 {
+        font-size: 2rem;
     }
 }
