@@ -1,0 +1,34 @@
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    viewBox="660 380 110 90" 
+    preserveAspectRatio="xMidYMid meet"
+>
+    <defs>
+        <clipPath id="6c2a8abf0f">
+            <path d="M 658.34375 344 L 781 344 L 781 465 L 658.34375 465 Z M 658.34375 344 "/>
+        </clipPath>
+    </defs>
+    <g id="6a241f0f7d">
+        <g clip-rule="nonzero" clip-path="url(#6c2a8abf0f)">
+            <g mask="url(#abf08761cb)" transform="matrix(0.960937,0,0,0.964286,658.345413,343.933827)">
+                <image 
+                    width="128" 
+                    height="126" 
+                    xlink:href="data:image/png;base64,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" 
+                    preserveAspectRatio="xMidYMid meet"
+                />
+                <mask id="abf08761cb">
+                    <g>
+                        <image 
+                            width="128" 
+                            height="126" 
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAB+CAAAAADJzUZ+AAAAAmJLR0QA/4ePzL8AAAIuSURBVGiB7ZjLSxtRFIcnxjiRJBJ8IChaGyuCiIgVJCoILkTwH3Ah9K/oqpu6KIgg7kyFbl2IUpTqwlqoUcQHoig+8FUXFtqFoLiw0qqnG5E4cwZyZ4ZzN79vNTm53O9jZpiQMQwAAAAAAAAAAAAAAAAAAAAAfKRNr76XSKe+gUhrwDZpDSgm0hgQLd0jjQFmZRuRxgCzLkU6A4J1Uxn+NfmA+u8ZfoqL+6uXMv3yVyCx8czfLe2v3SatJ6B9n7QGJHYt/k1Zv7lq8VPK1T45bgNGW6yTS9GA5je20ZVkQGTGPjt1t5UrQlPWG4CIygUDXjP+M3dbuboE4RFmOO8uwBXVzAmgJjm/Ocb4z+X8RtE/JmBIMKCeuwLFcv74DOP/IuePdXEnoErMX9jJ+X+L+V8Oc37qF9IHGtZZP9XI+MMtP3j/iYw/lDzi/ST0YqBx3MFPURF/uNvJ/97Drgq/hhHHPz6fZQJCTgGLOzIBgaDDFx88+FUC6I6fz34VCgg4BAx68SvdA/zad4tSAWYBN00PePKrBORVMcPjtw/eArInnlywP4IOBd8JJHp+2vzTrZ63zc16Zby21DI5H/X0BFANiDU+X7u19PHAu18hIP9VxofLyeWJGx/0KgG5kafDb7NbaV/sSgH3t48H0+MLv/zSq9Dx6S8R0Upfha/bOv3C2Sm4KIkGdwdTc9e+BgSyXllUVvLiz+nZha96lQAjEjPu/NYDAAAAAABgGP8BnzlNWzQttUwAAAAASUVORK5CYII=" 
+                            preserveAspectRatio="xMidYMid meet"
+                        />
+                    </g>
+                </mask>
+            </g>
+        </g>
+    </g>
+</svg> 

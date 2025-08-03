@@ -162,19 +162,7 @@ body {
     padding: 2rem 0;
 }
 
-/* Timeline center line - Mining shaft */
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 6px;
-    background: linear-gradient(180deg, #7c3aed 0%, #a855f7 50%, #7c3aed 100%);
-    transform: translateX(-50%);
-    border-radius: 3px;
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
-}
+/* No center line - direct node connections only */
 
 /* Project Items */
 .project-item {
@@ -194,48 +182,66 @@ body {
     left: 55%;
 }
 
-/* Connection lines - Mining tunnels */
-.project-item::before {
+/* Node connection points */
+.project-content::before {
     content: '';
     position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 4px;
-    background: linear-gradient(90deg, #7c3aed 0%, #a855f7 100%);
-    border-radius: 2px;
-    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
-}
-
-.project-item.left::before {
-    right: -50px;
-    transform: translateY(-50%);
-}
-
-.project-item.right::before {
-    left: -50px;
-    transform: translateY(-50%);
-}
-
-/* Connection points - Mining supports */
-.project-item::after {
-    content: '';
-    position: absolute;
-    top: 50%;
+    top: -15px;
+    left: 50%;
     width: 20px;
     height: 20px;
     background: #7c3aed;
     border-radius: 50%;
-    border: 4px solid #1a1a1a;
-    box-shadow: 0 0 0 4px #7c3aed, 0 0 20px rgba(124, 58, 237, 0.5);
-    transform: translateY(-50%);
+    border: 3px solid #1a1a1a;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 2px #7c3aed, 0 0 10px rgba(124, 58, 237, 0.5);
+    z-index: 10;
 }
 
-.project-item.left::after {
-    right: -60px;
+.project-content::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: #7c3aed;
+    border-radius: 50%;
+    border: 3px solid #1a1a1a;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 2px #7c3aed, 0 0 10px rgba(124, 58, 237, 0.5);
+    z-index: 10;
 }
 
-.project-item.right::after {
-    left: -60px;
+/* ReactFlow-style direct node connections */
+.project-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    z-index: 5;
+}
+
+/* Left to Right connections (L-shaped path) */
+.project-item.left:not(:last-child)::before {
+    bottom: -15px;
+    left: 50%;
+    width: calc(55% + 2rem);
+    height: calc(4rem + 15px);
+    border-right: 4px solid #7c3aed;
+    border-top: 4px solid #7c3aed;
+    border-top-right-radius: 8px;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+}
+
+/* Right to Left connections (reverse L-shaped path) */
+.project-item.right:not(:last-child)::before {
+    bottom: -15px;
+    right: 50%;
+    width: calc(55% + 2rem);
+    height: calc(4rem + 15px);
+    border-left: 4px solid #7c3aed;
+    border-top: 4px solid #7c3aed;
+    border-top-left-radius: 8px;
+    box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
 }
 
 /* Project Content - Underground chambers */
@@ -247,6 +253,7 @@ body {
     transition: all 0.3s ease;
     border: 1px solid #3a3a3a;
     position: relative;
+    overflow: visible;
 }
 
 .project-content::before {
