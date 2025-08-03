@@ -3,14 +3,6 @@ import React from 'react';
 const Hero = () => {
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
-      {/* Stars and celestial background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full opacity-80 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white rounded-full opacity-60 animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/6 w-1.5 h-1.5 bg-white rounded-full opacity-70 animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-white rounded-full opacity-50 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-        <div className="absolute top-1/6 right-1/6 w-2 h-2 bg-white rounded-full opacity-90 animate-pulse" style={{animationDelay: '1.5s'}}></div>
-      </div>
 
       {/* Developer coding SVG */}
       <div className="absolute inset-0 flex items-center justify-center opacity-30">
@@ -51,13 +43,6 @@ const Hero = () => {
               </a>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

@@ -27,7 +27,7 @@ const Footer = () => {
               </p>
               <p className="text-gray-300 flex items-center">
                 <span className="mr-2">📍</span>
-                San Francisco, CA
+                Somewhere
               </p>
             </div>
           </div>

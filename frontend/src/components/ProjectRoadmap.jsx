@@ -86,9 +86,9 @@ const ProjectRoadmap = () => {
   ];
 
   return (
-    <section id="projects" className="relative min-h-screen bg-gradient-to-b from-purple-900 to-indigo-900 py-20">
+    <section id="projects" className="relative min-h-screen bg-[#402f5d] py-20">
       {/* Underground background with dirt lines */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900 to-indigo-900">
+      <div className="absolute inset-0 bg-[#402f5d]">
         {/* Dirt line SVGs scattered across the background */}
         <img src="/assets/dirt-line-1.svg" className="absolute opacity-40 w-32" style={{top: '8%', left: '20%', transform: 'rotate(-5deg)'}} alt="" />
         <img src="/assets/dirt-line-2.svg" className="absolute opacity-40 w-24" style={{top: '35%', right: '25%', transform: 'rotate(3deg)'}} alt="" />
@@ -105,8 +105,8 @@ const ProjectRoadmap = () => {
         <img src="/assets/dirt-line-1.svg" className="absolute opacity-40 w-28" style={{top: '8%', right: '10%', transform: 'rotate(-10deg)'}} alt="" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
+        <div className="text-center mb-32">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             My Journey Underground
           </h2>
