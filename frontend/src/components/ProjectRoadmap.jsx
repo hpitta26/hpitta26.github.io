@@ -86,29 +86,12 @@ const ProjectRoadmap = () => {
   ];
 
   return (
-    <section id="projects" className="relative min-h-screen bg-[#402f5d] py-20">
-      {/* Underground background with dirt lines */}
-      <div className="absolute inset-0 bg-[#402f5d]">
-        {/* Dirt line SVGs scattered across the background */}
-        <img src="/assets/dirt-line-1.svg" className="absolute opacity-40 w-32" style={{top: '8%', left: '20%', transform: 'rotate(-5deg)'}} alt="" />
-        <img src="/assets/dirt-line-2.svg" className="absolute opacity-40 w-24" style={{top: '35%', right: '25%', transform: 'rotate(3deg)'}} alt="" />
-        <img src="/assets/dirt-line-3.svg" className="absolute opacity-40 w-28" style={{bottom: '35%', left: '65%', transform: 'rotate(-2deg)'}} alt="" />
-        <img src="/assets/dirt-line-4.svg" className="absolute opacity-40 w-26" style={{top: '55%', left: '15%', transform: 'rotate(7deg)'}} alt="" />
-        <img src="/assets/dirt-line-1.svg" className="absolute opacity-40 w-30" style={{top: '15%', left: '75%', transform: 'rotate(12deg)'}} alt="" />
-        <img src="/assets/dirt-line-2.svg" className="absolute opacity-40 w-24" style={{top: '70%', right: '20%', transform: 'rotate(-8deg)'}} alt="" />
-        <img src="/assets/dirt-line-3.svg" className="absolute opacity-40 w-32" style={{bottom: '25%', left: '20%', transform: 'rotate(15deg)'}} alt="" />
-        <img src="/assets/dirt-line-4.svg" className="absolute opacity-40 w-28" style={{top: '15%', left: '50%', transform: 'rotate(-3deg)'}} alt="" />
-        <img src="/assets/dirt-line-1.svg" className="absolute opacity-40 w-26" style={{top: '80%', left: '75%', transform: 'rotate(5deg)'}} alt="" />
-        <img src="/assets/dirt-line-2.svg" className="absolute opacity-40 w-30" style={{top: '30%', right: '65%', transform: 'rotate(-12deg)'}} alt="" />
-        <img src="/assets/dirt-line-3.svg" className="absolute opacity-40 w-28" style={{bottom: '40%', left: '80%', transform: 'rotate(8deg)'}} alt="" />
-        <img src="/assets/dirt-line-4.svg" className="absolute opacity-40 w-30" style={{top: '45%', left: '35%', transform: 'rotate(-15deg)'}} alt="" />
-        <img src="/assets/dirt-line-1.svg" className="absolute opacity-40 w-28" style={{top: '8%', right: '10%', transform: 'rotate(-10deg)'}} alt="" />
-      </div>
+    <section id="projects" className="relative min-h-screen py-20 bg-[#1a0836]">
 
       <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
         <div className="text-center mb-32">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            My Journey Underground
+            My Projects
           </h2>
           <p className="text-xl text-purple-200 max-w-2xl mx-auto">
             Explore the depths of my development journey through these interconnected projects

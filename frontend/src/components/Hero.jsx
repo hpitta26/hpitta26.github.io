@@ -1,17 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Hero = () => {
-  return (
-    <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden">
+  const [scrollY, setScrollY] = useState(0);
 
-      {/* Developer coding SVG */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-30">
-        <img 
-          src="/assets/coding-setup.svg" 
-          alt="Developer Coding" 
-          className="max-w-full max-h-full object-contain"
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen overflow-hidden">
+      
+      {/* Parallax Background Layers */}
+      <div className="absolute inset-0">
+        {/* Sky Background (slowest layer) */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/assets/hero-background.avif)',
+            transform: `translateY(${scrollY * 0.1}px)`,
+            willChange: 'transform'
+          }}
         />
+        
+        {/* Developer coding SVG (middle layer) */}
+        <div 
+          className="absolute inset-0 flex items-center justify-center opacity-40"
+          style={{
+            transform: `translateY(${scrollY * 0.3}px)`,
+            willChange: 'transform'
+          }}
+        >
+          <img 
+            src="/assets/coding-setup.svg" 
+            alt="Developer Coding" 
+            className="max-w-full max-h-full object-contain"
+          />
+        </div>
       </div>
+
+      {/* Transition to Underground */}
+      <div 
+        className="absolute bottom-[-500px] w-full h-[600px] bg-cover bg-top pointer-events-none"
+        style={{
+          backgroundImage: 'url(/assets/sky-to-ground.png)',
+          zIndex: 20
+        }}
+      />
 
       {/* Hero content */}
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
