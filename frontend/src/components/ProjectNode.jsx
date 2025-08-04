@@ -7,9 +7,12 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
     <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
       {/* Project Description - Below node on small screens */}
       <div className={`${isLeft ? 'lg:order-2 lg:text-right' : 'lg:order-1'} order-2 z-10 text-center lg:text-left ${isLeft ? 'lg:text-right' : ''}`}>
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
           {project.title}
         </h3>
+        <p className="text-purple-300 text-sm font-medium mb-4">
+          {project.role}
+        </p>
         <p className="text-gray-300 text-lg leading-relaxed mb-6">
           {project.description}
         </p>
