@@ -51,11 +51,10 @@ const Hero = () => {
               Henrique Pitta
             </h1>
             <h2 className="text-xl md:text-2xl text-purple-200 mb-8 font-medium">
-              Software Engineer & Web Developer
+              Software & AI Engineer
             </h2>
             <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Passionate about creating innovative web applications and solving complex problems through elegant code. 
-              I specialize in full-stack development with a focus on user experience and performance.
+              tbh I like to build anything as long as it's cool and challenging.
             </p>
           </div>
         </div>

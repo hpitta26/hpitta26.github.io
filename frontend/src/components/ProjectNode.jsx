@@ -13,7 +13,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         <p className="text-gray-300 text-lg leading-relaxed mb-6">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className={`flex flex-wrap gap-1 ${isLeft ? 'justify-end' : 'justify-start'}`}>
           {project.tags.map((tag, index) => (
             <span 
               key={index}
@@ -29,11 +29,14 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       <div className={`${isLeft ? 'md:order-1' : 'md:order-2'} flex justify-center relative`}>
         <div className="relative">
           {/* Top connection point */}
-          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-t-sm border-1 border-white shadow-lg z-20"></div>
+          {/* <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-t-sm border-1 border-white shadow-lg z-20"></div> */}
           
-          {/* Bigger Node card with sleek white frame */}
-          <div className="w-[600px] h-95 relative z-1">
-            <div className={`w-full h-full bg-gradient-to-br ${project.gradient} rounded-3xl shadow-2xl border-2 border-white overflow-hidden`}>
+          {/* Bigger Node card with outer frame */}
+          <div className="w-[600px] h-95 relative z-5">
+            {/* Outer Frosted Glass Frame */}
+            <div className="w-full h-full bg-[#33204a] rounded-3xl p-3 shadow-2xl border border-[#5b4c6e]">
+              {/* Inner Glass Card */}
+              <div className={`w-full h-full bg-gradient-to-br ${project.gradient} bg-opacity-20 backdrop-blur-md rounded-lg border border-white/30 overflow-hidden`} style={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}}>
               <div className="relative z-10 p-8 h-full">
                 <div className="flex items-center justify-between h-full">
                   <div className="flex-1">
@@ -67,13 +70,14 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
 
           {/* Bottom connection point */}
-          {!isLast && (
+          {/* {!isLast && (
             <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-b-sm border-1 border-white shadow-lg z-20"></div>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -110,7 +114,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               strokeDasharray="3,2"
               className=""
               style={{
-                filter: 'drop-shadow(0 0 6px rgba(139, 92, 246, 0.5))'
+                filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
               }}
             />
           </svg>

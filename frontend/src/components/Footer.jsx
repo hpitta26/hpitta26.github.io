@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="border-t border-[#46375d] border-dashed mb-14"></div>
         
         {/* Social Icons */}
-        <div className="flex justify-center space-x-8 mb-14">
+        <div className="flex justify-center space-x-12 mb-14">
           {/* Email */}
           <a 
             href="mailto:henrique.pitta@email.com" 
