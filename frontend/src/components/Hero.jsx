@@ -23,41 +23,35 @@ const Hero = () => {
             willChange: 'transform'
           }}
         />
-      </div>
+      </div>      
 
-      {/* Transition to Underground */}
-      <div 
-        className="absolute bottom-[-500px] w-full h-[600px] bg-cover bg-top pointer-events-none"
-        style={{
-          backgroundImage: 'url(/assets/sky-to-ground.png)',
-          zIndex: 20
-        }}
-      />
-
-      {/* Developer SVG - Behind content */}
-      <div className="absolute inset-0 flex items-center justify-center z-5 pointer-events-none">
-        <img 
-          src="/assets/coding-setup.svg" 
-          alt="Developer Coding" 
-          className="w-[650px] h-[650px] opacity-70 mt-46"
-        />
-      </div>
-
-      {/* Hero content */}
-      <div className="relative z-20 flex items-start justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-32">
-        <div className="text-center max-w-4xl mx-auto">
+      {/* Hero content with Developer */}
+      <div className="relative z-20 flex flex-col items-center justify-center h-screen px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="text-center max-w-4xl mx-auto mt-12">
           <div className="animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
               Henrique Pitta
             </h1>
-            <h2 className="text-xl md:text-2xl text-purple-200 mb-8 font-medium">
+            <h2 className="text-xl md:text-2xl text-purple-200 mb-2 font-medium">
               Software & AI Engineer
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed">
               tbh I like to build anything as long as it's cool and challenging.
             </p>
           </div>
         </div>
+        
+        {/* Developer and Ground - Grouped with hero content */}
+        <div className="w-screen pointer-events-none scale-180 sm:scale-130 lg:scale-105">
+          <img 
+            src="/assets/coder-ground-combined.svg" 
+            alt="Developer at workstation with ground transition" 
+            className="h-auto"
+          />
+        </div>
+        
+        {/* Fill remaining space with white background */}
+        <div className="flex-1 w-screen bg-[#1a0836]"></div>
       </div>
     </section>
   );
