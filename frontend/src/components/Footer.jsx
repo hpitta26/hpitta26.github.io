@@ -42,7 +42,7 @@ const Footer = () => {
 
           {/* LinkedIn */}
           <a 
-            href="https://linkedin.com/in/henriquepitta" 
+            href="https://www.linkedin.com/in/henrique-pitta-19594b249/" 
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-white transition-colors duration-200 transform"
