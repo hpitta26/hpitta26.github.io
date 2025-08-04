@@ -5,8 +5,8 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   
   return (
     <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
-      {/* Project Description - No container styling */}
-      <div className={`${isLeft ? 'lg:order-2 lg:text-right' : 'lg:order-1'} z-10 text-center lg:text-left ${isLeft ? 'lg:text-right' : ''}`}>
+      {/* Project Description - Below node on small screens */}
+      <div className={`${isLeft ? 'lg:order-2 lg:text-right' : 'lg:order-1'} order-2 z-10 text-center lg:text-left ${isLeft ? 'lg:text-right' : ''}`}>
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
           {project.title}
         </h3>
@@ -26,7 +26,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       </div>
 
       {/* Larger Project Node */}
-      <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} flex justify-center relative`}>
+      <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 flex justify-center relative`}>
         <div className="relative">
           {/* Top connection point */}
           {/* <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-t-sm border-1 border-white shadow-lg z-20"></div> */}
@@ -105,7 +105,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       {/* Simple vertical connection line for smaller screens */}
       {!isLast && (
         <div className="absolute pointer-events-none w-full flex justify-center lg:hidden" style={{
-          bottom: '-450px',
+          bottom: '-250px',
           left: '0',
           zIndex: 0,
           height: '500px'

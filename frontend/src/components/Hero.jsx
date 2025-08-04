@@ -50,8 +50,8 @@ const Hero = () => {
           />
         </div>
         
-        {/* Fill remaining space with white background */}
-        <div className="flex-1 w-screen bg-[#1a0836]"></div>
+        {/* Fill remaining space with background - cover any pixel gaps */}
+        <div className="flex-1 w-screen bg-[#1a0836]" style={{ marginBottom: '-2px', minHeight: '2px' }}></div>
       </div>
     </section>
   );
