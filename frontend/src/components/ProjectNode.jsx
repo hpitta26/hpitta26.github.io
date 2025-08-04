@@ -4,16 +4,16 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   const isLeft = project.position === 'left';
   
   return (
-    <div className={`relative grid grid-cols-1 md:grid-cols-2 gap-20 items-center ${isLeft ? 'md:flex-row-reverse' : ''}`}>
+    <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
       {/* Project Description - No container styling */}
-      <div className={`${isLeft ? 'md:order-2 md:text-right' : 'md:order-1'} z-10`}>
+      <div className={`${isLeft ? 'lg:order-2 lg:text-right' : 'lg:order-1'} z-10 text-center lg:text-left ${isLeft ? 'lg:text-right' : ''}`}>
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
           {project.title}
         </h3>
         <p className="text-gray-300 text-lg leading-relaxed mb-6">
           {project.description}
         </p>
-        <div className={`flex flex-wrap gap-1 ${isLeft ? 'justify-end' : 'justify-start'}`}>
+        <div className={`flex flex-wrap gap-1 justify-center ${isLeft ? 'lg:justify-end' : 'lg:justify-start'}`}>
           {project.tags.map((tag, index) => (
             <span 
               key={index}
@@ -26,50 +26,31 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       </div>
 
       {/* Larger Project Node */}
-      <div className={`${isLeft ? 'md:order-1' : 'md:order-2'} flex justify-center relative`}>
+      <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} flex justify-center relative`}>
         <div className="relative">
           {/* Top connection point */}
           {/* <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-t-sm border-1 border-white shadow-lg z-20"></div> */}
           
-          {/* Bigger Node card with outer frame */}
-          <div className="w-[600px] h-95 relative z-5">
+          {/* Bigger Node card with outer frame - responsive width starting at 600px */}
+          <div className="w-[600px] max-w-[calc(100vw-4rem)] sm:max-w-[calc(100vw-4rem)] lg:max-w-[600px] h-95 relative z-5">
             {/* Outer Frosted Glass Frame */}
             <div className="w-full h-full bg-[#33204a] rounded-3xl p-3 shadow-2xl border border-[#5b4c6e]">
               {/* Inner Glass Card */}
               <div className={`w-full h-full bg-gradient-to-br ${project.gradient} bg-opacity-20 backdrop-blur-md rounded-lg border border-white/30 overflow-hidden`} style={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}}>
-              <div className="relative z-10 p-8 h-full">
-                <div className="flex items-center justify-between h-full">
-                  <div className="flex-1">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 border-2 border-white/30">
-                      <span className="text-2xl font-bold text-white">{project.id}</span>
-                    </div>
-                    <h4 className="text-white font-bold text-2xl mb-3">{project.title}</h4>
-                    <p className="text-white/80 text-sm leading-relaxed mb-4 max-w-xs">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1">
-                      {project.tags.slice(0, 3).map((tag, index) => (
-                        <span 
-                          key={index}
-                          className="px-2 py-1 bg-white/20 text-white text-xs rounded-full border border-white/30"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className="w-48 h-32 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-12 h-12 bg-white/20 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                          <span className="text-white text-lg">🎯</span>
+                <div className="relative z-10 p-8 h-full">
+                  <div className="flex items-center justify-between h-full">
+                    <div className="flex-1 flex items-center justify-center">
+                      <div className="w-48 h-32 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="w-12 h-12 bg-white/20 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                            <span className="text-white text-lg">🎯</span>
+                          </div>
+                          <span className="text-white/60 text-xs">Project Demo</span>
                         </div>
-                        <span className="text-white/60 text-xs">Project Demo</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>
@@ -81,9 +62,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         </div>
       </div>
 
-      {/* Connection SVG to next node */}
+      {/* Connection SVG to next node - only show on large screens */}
       {!isLast && nextProject && (
-        <div className="absolute pointer-events-none overflow-visible w-full" style={{
+        <div className="absolute pointer-events-none overflow-visible w-full hidden lg:block" style={{
           bottom: '-145px',
           left: '0',
           zIndex: 5,
@@ -113,6 +94,33 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               strokeWidth="1.5"
               strokeDasharray="3,2"
               className=""
+              style={{
+                filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
+              }}
+            />
+          </svg>
+        </div>
+      )}
+      
+      {/* Simple vertical connection line for smaller screens */}
+      {!isLast && (
+        <div className="absolute pointer-events-none w-full flex justify-center lg:hidden" style={{
+          bottom: '-450px',
+          left: '0',
+          zIndex: 0,
+          height: '500px'
+        }}>
+          <svg 
+            className="w-4 h-full" 
+            viewBox="0 0 4 80"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M2 0L2 80"
+              fill="none"
+              stroke="#8b5cf6"
+              strokeWidth="0.4"
+              strokeDasharray="0.6,0.4"
               style={{
                 filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
               }}

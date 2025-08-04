@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="flex justify-center space-x-12 mb-14">
           {/* Email */}
           <a 
-            href="mailto:henrique.pitta@email.com" 
+            href="mailto:20henriquep@gmail.com" 
             className="text-gray-400 hover:text-white transition-colors duration-200 transform"
             title="Email"
           >
