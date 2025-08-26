@@ -21,7 +21,7 @@ const ProjectRoadmap = () => {
     {
       id: 1,
       title: "Roadmap AI",
-      description: "This is a short description about the project. It explains what the project does and highlights the main technologies used.",
+      description: "AI-powered personal project management assistant. Describe your vision and get a end-to-end implementation plan tailored to your needs and experience level. This plan can be edited and expanded overtime as your project evolves.",
       tags: ["React", "FastAPI", "PostgreSQL", "OpenAI API"],
       gradient: "from-purple-500 to-pink-500",
       position: "right",
@@ -31,8 +31,8 @@ const ProjectRoadmap = () => {
     {
       id: 2,
       title: "TalentBridge",
-      description: "This is a short description about the project. It explains what the project does and highlights the main technologies used.",
-      tags: ["React", "Django", "SQLite"],
+      description: "Platform for connecting EB1 and EB2 visa holders with US based employers. Currently in the proposal stage, with 70+ EB1/EB2 visa holders agreeing to join the platform on launch.",
+      tags: ["React", "Django", "PostgreSQL"],
       gradient: "from-pink-500 to-red-500",
       position: "left",
       images: ["bridge/bridge-1.png"],
@@ -41,7 +41,7 @@ const ProjectRoadmap = () => {
     {
       id: 3,
       title: "Investor Tinder",
-      description: "This is a short description about the project. It explains what the project does and highlights the main technologies used.",
+      description: "Platform for connecting startups with potential investors. My first big full-stack web application, built while learning frontend and backend development.",
       tags: ["React", "Express", "MongoDB"],
       gradient: "from-red-500 to-orange-500",
       position: "right",
@@ -50,7 +50,7 @@ const ProjectRoadmap = () => {
     {
       id: 4,
       title: "Simple Machine",
-      description: "This is a short description about the project. It explains what the project does and highlights the main technologies used.",
+      description: "Semester long project for CPSC 213. Implemented a simple CPU simulator which supports uploading and running SM213 assembly code.",
       tags: ["Java Swing", "SM213 Assembly"],
       gradient: "from-orange-500 to-yellow-500",
       position: "left",
@@ -59,7 +59,7 @@ const ProjectRoadmap = () => {
     {
       id: 5,
       title: "Expense Manager",
-      description: "This is a short description about the project. It explains what the project does and highlights the main technologies used.",
+      description: "Semester long project for CPSC 210. Implemented a desktop application for managing personal finances, with features such as expense tracking, budgeting, and data visualization.",
       tags: ["Java Swing", "JUnit", "JFreeChart"],
       gradient: "from-yellow-500 to-green-500",
       position: "right",
@@ -71,7 +71,7 @@ const ProjectRoadmap = () => {
     {
       id: 1,
       title: "Euleris AI",
-      description: "This is a short description about the group project. It explains what the project does and highlights the main technologies used.",
+      description: "Tasked with R&D and buliding out a problem agnostic AI Competitive Programming Tutor. Worked on full-stack tutor feature as well as Multi-Agent system which handles user interaction, quality assurance, etc. Worked on the project end-to-end from ideation to deployment.",
       tags: ["React", "FastAPI", "Django", "PostgreSQL", "OpenAI API", "LangChain"],
       gradient: "from-purple-500 to-pink-500",
       position: "right",
@@ -82,7 +82,7 @@ const ProjectRoadmap = () => {
     {
       id: 2,
       title: "PokerBots FIU",
-      description: "This is a short description about the group project. It explains what the project does and highlights the main technologies used.",
+      description: "Platform for running competitions for the annual FIU PokerBots hackathon. Platform supports a plugged-in game engine with customizable rule sets. Competitants iteratively build and test their bots on the platform with goal of winning the final competition.",
       tags: ["Flask", "RabbitMQ", "Celery", "PostgreSQL", "MinIO"],
       gradient: "from-pink-500 to-red-500",
       position: "left",
@@ -92,7 +92,7 @@ const ProjectRoadmap = () => {
     {
       id: 3,
       title: "INIT Build FIU - GatherU",
-      description: "This is a short description about the group project. It explains what the project does and highlights the main technologies used.",
+      description: "Led a team of 12 students to build a social media style university event discovery page, with gamification to encourage student engagement.",
       tags: ["React", "Django", "PostgreSQL", "MinIO"],
       gradient: "from-red-500 to-orange-500",
       position: "right",
@@ -102,7 +102,7 @@ const ProjectRoadmap = () => {
     {
       id: 4,
       title: "INIT Build FIU - CashCore",
-      description: "This is a short description about the group project. It explains what the project does and highlights the main technologies used.",
+      description: "Backend Lead of a personal finance management web application. Integrated with Plaid API to allow users to link their bank accounts and view transactions, budgets, and financial insights all in one place.",
       tags: ["Next.js", "Django", "PostgreSQL", "Plaid API"],
       gradient: "from-orange-500 to-yellow-500",
       position: "right",

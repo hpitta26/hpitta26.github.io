@@ -1,4 +1,4 @@
-1. Create pages for each proejct (longer descriptions, shorter ones should be on the roadmap)
+1. Create pages for each project (longer descriptions, shorter ones should be on the roadmap)
 2. Add coding animation to coder svg
 3. Populate my projects
 4. Add under construction banner/ section
