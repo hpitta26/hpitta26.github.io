@@ -23,7 +23,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
     <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
       {/* Project Description - Below node on small screens */}
       <div className={`${isLeft ? 'lg:order-2 lg:text-right' : 'lg:order-1'} order-2 z-10 text-center lg:text-left ${isLeft ? 'lg:text-right' : ''}`}>
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <h3 className="text-3xl font-bold text-white mb-2">
           {project.title}
         </h3>
         {project.role && (
@@ -66,8 +66,8 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           {/* Top connection point */}
           {/* <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-t-sm border-1 border-white shadow-lg z-20"></div> */}
           
-          {/* Bigger Node card with outer frame - responsive width starting at 600px */}
-          <div className="w-[600px] max-w-[calc(100vw-4rem)] sm:max-w-[calc(100vw-4rem)] lg:max-w-[600px] h-95 relative z-5">
+          {/* Bigger Node card with outer frame - responsive width with maintained aspect ratio */}
+          <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{aspectRatio: '600/380'}}>
             {/* Outer Frosted Glass Frame */}
             <div className="w-full h-full bg-[#33204a] rounded-3xl p-3 shadow-2xl border border-[#5b4c6e]">
               {/* Inner Glass Card */}
@@ -198,22 +198,22 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       {/* Simple vertical connection line for smaller screens */}
       {!isLast && (
         <div className="absolute pointer-events-none w-full flex justify-center lg:hidden" style={{
-          bottom: '-250px',
+          bottom: '-400px',
           left: '0',
           zIndex: 0,
-          height: '500px'
+          height: '800px'
         }}>
           <svg 
             className="w-4 h-full" 
-            viewBox="0 0 4 80"
+            viewBox="0 0 4 800"
             preserveAspectRatio="none"
           >
             <path
-              d="M2 0L2 80"
+              d="M2 0L2 800"
               fill="none"
               stroke="#8b5cf6"
               strokeWidth="0.4"
-              strokeDasharray="0.6,0.4"
+              strokeDasharray="4,3"
               style={{
                 filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
               }}
