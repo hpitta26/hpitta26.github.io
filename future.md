@@ -4,3 +4,4 @@
 4. Add under construction banner/ section
 5. Add resume or other section where I can explain my experience and other relevant acomplishments
 6. Add other svgs showcasing thing that I like /  personality
+7. 
