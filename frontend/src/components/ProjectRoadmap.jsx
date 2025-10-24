@@ -119,7 +119,7 @@ const ProjectRoadmap = () => {
       tags: ["React", "FastAPI", "Google ADK", "SQLite"],
       gradient: "from-purple-500 to-pink-500",
       position: "right",
-      role: "Placed top 10 of 245 projects at ShellHacks 2025.",
+      role: "Placed top 10 of 245 projects at ShellHacks 2025",
       images: ["translateflow/image.png"],
     }
   ];
