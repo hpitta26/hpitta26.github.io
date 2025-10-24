@@ -108,23 +108,27 @@ const ProjectRoadmap = () => {
       position: "right",
       role: "Backend Lead",
       images: ["cashcore/cashcore-1.png", "cashcore/cashcore-2.png", "cashcore/cashcore-3.png"]
-    },
-    // {
-    //   id: 5,
-    //   title: "Dawn UBC",
-    //   description: "This is a short description about the group project. It explains what the project does and highlights the main technologies used.",
-    //   tags: ["React Native", "Firebase"],
-    //   gradient: "from-orange-500 to-yellow-500",
-    //   position: "left",
-    //   role: "Frontend Developer",
-    //   images: ["dawn/dawn-1.png"]
-    // },
+    }
+  ];
+
+  const hackathon = [
+    {
+      id: 1,
+      title: "Translate Flow",
+      description: "Multi-agent translation system that mimics professional translation workflows (translator-reviewer pattern). Provides context aware translations by identifying UI element groups (e.g. header and its paragraphs) while also preserving brand voice and avoiding translation of brand terms.",
+      tags: ["React", "FastAPI", "Google ADK", "SQLite"],
+      gradient: "from-purple-500 to-pink-500",
+      position: "right",
+      role: "Placed top 10 of 245 projects at ShellHacks 2025.",
+      images: ["translateflow/image.png"],
+    }
   ];
 
   // Get current data based on active section
   const getCurrentData = () => {
     switch(activeSection) {
       case 'group': return group;
+      case 'hackathon': return hackathon;
       default: return solo;
     }
   };
@@ -133,6 +137,7 @@ const ProjectRoadmap = () => {
   const getSectionTitle = () => {
     switch(activeSection) {
       case 'group': return 'My Group Projects';
+      case 'hackathon': return 'My Hackathon Projects';
       default: return 'My Solo Projects';
     }
   };
@@ -143,24 +148,24 @@ const ProjectRoadmap = () => {
       <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
           {/* Section Slider */}
           <div className="flex justify-center mb-8">
-            <div className=" rounded-lg border border-[#b098d0] p-1 relative">
+            <div className=" rounded-lg border border-[#b098d0] p-2 pr-3 relative">
               {/* Animated sliding button (same as Back to Top button) */}
               <div 
                 className="absolute top-1 bottom-1 bg-white text-[#7147ab] font-semibold rounded-lg border border-[#b098d0] transition-all duration-300 ease-out transform cursor-pointer"
                 style={{
-                  width: 'calc(50% - 4px)',
-                  left: activeSection === 'solo' ? '4px' : 'calc(50% + 0px)'
+                  width: 'calc(33.333% - 4px)',
+                  left: activeSection === 'solo' ? '4px' : activeSection === 'group' ? 'calc(33.333% + 0px)' : 'calc(66.666% + 0px)'
                 }}
               >
                 <div className="h-full border-b-3 border-b-[#f2ccd7] rounded-[7px]"></div>
               </div>
               
               <div className="flex relative z-10">
-                {['solo', 'group'].map((section) => (
+                {['solo', 'group', 'hackathon'].map((section) => (
                   <button
                     key={section}
                     onClick={() => setActiveSection(section)}
-                    className={`px-6 py-3 rounded-[7px] text-sm font-semibold transition-all duration-300 capitalize transform cursor-pointer ${
+                    className={`px-4 py-3 rounded-[7px] text-sm font-semibold transition-all duration-300 capitalize transform cursor-pointer ${
                       activeSection === section
                         ? 'text-[#7147ab]'
                         : 'text-white hover:text-gray-200'
