@@ -106,7 +106,7 @@ const ProjectRoadmap = () => {
     {
       id: 3,
       title: "INIT Build FIU - GatherU",
-      description: "Led a team of 12 students to build a social media style university event discovery page, with gamification to encourage student engagement.",
+      description: "Led a team of 11 students to build a social media style university event discovery page, with gamification to encourage student engagement.",
       tags: ["React", "Django", "PostgreSQL", "MinIO"],
       gradient: "from-red-500 to-orange-500",
       position: "right",
