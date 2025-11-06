@@ -118,7 +118,7 @@ const ProjectRoadmap = () => {
       description: "Financial dashboard with Elowen, your multi-agent financial advisor democratizing institutional-quality financial planning. Expert guidance that traditionally costs thousands annually, now accessible through AI-powered portfolio analysis and personalized recommendations.",
       tags: ["React", "FastAPI", "Google ADK", "PostgreSQL", "Vultr VPS"],
       gradient: "from-blue-500 to-purple-500",
-      position: "left",
+      position: "right",
       role: "1st place out of 188 projects at KnightHacks 2025",
       images: ["finterra/finterra-3.png", "finterra/finterra-2.png", "finterra/finterra-1.png"]
     },
@@ -128,7 +128,7 @@ const ProjectRoadmap = () => {
       description: "Multi-agent translation system that mimics professional translation workflows (translator-reviewer pattern). Provides context aware translations by identifying UI element groups (e.g. header and its paragraphs) while also preserving brand voice and avoiding translation of brand terms.",
       tags: ["React", "FastAPI", "Google ADK", "SQLite"],
       gradient: "from-purple-500 to-pink-500",
-      position: "right",
+      position: "left",
       role: "Placed top 10 of 245 projects at ShellHacks 2025",
       images: ["translateflow/image.png"],
     }
