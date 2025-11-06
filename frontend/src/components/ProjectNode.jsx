@@ -4,6 +4,12 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   const isLeft = project.position === 'left';
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const arrowLabels = {
+    "ClickMe": "Click me!",
+    "SecretProject": "Shh... secret!",
+    "ComingSoon": "Coming soon..."
+  }
+
   const nextImage = () => {
     if (project.images && project.images.length > 1 && currentImageIndex < project.images.length - 1) {
       setCurrentImageIndex((prev) => prev + 1);
@@ -63,6 +69,25 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       {/* Larger Project Node */}
       <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 flex justify-center relative`}>
         <div className="relative">
+          {/* Arrow-4 SVG Overlay - positioned outside on top */}
+          <div className={`absolute ${isLeft ? '-top-13 left-5' : '-top-13 right-5'} z-30 pointer-events-none`}>
+            {/* Arrow Label Text */}
+            <div className="absolute -top-7 left-7 transform whitespace-nowrap" style={{transform: `translateX(${isLeft ? '-75%' : '-25%'})`}}>
+              <span className="text-purple-300 text-sm font-medium">
+                {arrowLabels[project.arrowLabel]}
+              </span>
+            </div>
+            
+            {/* Arrow SVG */}
+            <div className="w-14 h-14" style={{filter: 'drop-shadow(0 0 8px rgba(168, 85, 247, 0.8))'}}>
+              <img 
+                src="/assets/arrow-4.svg"
+                alt="Arrow decoration"
+                className={`w-full h-full invert ${isLeft ? 'scale-x-[-1]' : ''}`}
+              />
+            </div>
+          </div>
+          
           {/* Bigger Node card with outer frame - responsive width with maintained aspect ratio */}
           <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{aspectRatio: '600/380'}}>
             {/* Outer Frosted Glass Frame */}
@@ -83,7 +108,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       <button
                         onClick={prevImage}
                         disabled={isFirstImage}
-                        className={`absolute left-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 ${
+                        className={`absolute left-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 opacity-100 transition-all duration-300 z-10 ${
                           isFirstImage 
                             ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed' 
                             : 'bg-black/50 hover:bg-black/70 text-white cursor-pointer'
@@ -98,7 +123,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       <button
                         onClick={nextImage}
                         disabled={isLastImage}
-                        className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 ${
+                        className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 opacity-100 transition-all duration-300 z-10 ${
                           isLastImage 
                             ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed' 
                             : 'bg-black/50 hover:bg-black/70 text-white cursor-pointer'
@@ -110,7 +135,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       </button>
                       
                       {/* Image indicators */}
-                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 opacity-100 transition-all duration-300">
                         {project.images.map((_, index) => (
                           <button
                             key={index}

@@ -26,7 +26,8 @@ const ProjectRoadmap = () => {
       gradient: "from-purple-500 to-pink-500",
       position: "right",
       images: ["roadmap/roadmap-light.png", "roadmap/roadmap-dark.png"],
-      underConstruction: true
+      underConstruction: true,
+      arrowLabel: "ComingSoon"
     },
     {
       id: 2,
@@ -36,7 +37,8 @@ const ProjectRoadmap = () => {
       gradient: "from-pink-500 to-red-500",
       position: "left",
       images: ["bridge/bridge-1.png"],
-      underConstruction: true
+      underConstruction: true,
+      arrowLabel: "ComingSoon"
     },
     {
       id: 3,
@@ -45,7 +47,8 @@ const ProjectRoadmap = () => {
       tags: ["React", "Express", "MongoDB"],
       gradient: "from-red-500 to-orange-500",
       position: "right",
-      images: ["invest/invest-1.png", "invest/invest-2.png", "invest/invest-3.png", "invest/invest-4.png", "invest/invest-5.png"]
+      images: ["invest/invest-1.png", "invest/invest-2.png", "invest/invest-3.png", "invest/invest-4.png", "invest/invest-5.png"],
+      arrowLabel: "ClickMe"
     },
     {
       id: 4,
@@ -54,7 +57,8 @@ const ProjectRoadmap = () => {
       tags: ["Java Swing", "SM213 Assembly"],
       gradient: "from-orange-500 to-yellow-500",
       position: "left",
-      images: ["sm/sm-2.png", "sm/sm-1.png"]
+      images: ["sm/sm-2.png", "sm/sm-1.png"],
+      arrowLabel: "ClickMe"
     },
     {
       id: 5,
@@ -63,7 +67,8 @@ const ProjectRoadmap = () => {
       tags: ["Java Swing", "JUnit", "JFreeChart"],
       gradient: "from-yellow-500 to-green-500",
       position: "right",
-      images: ["expense/expense-1.png"]
+      images: ["expense/expense-1.png"],
+      arrowLabel: "ClickMe"
     }
   ];
 
@@ -77,7 +82,8 @@ const ProjectRoadmap = () => {
       position: "right",
       role: "Software/AI Engineer Intern",
       images: ["euleris/severus-rsvp.png"],
-      underConstruction: true
+      underConstruction: true,
+      arrowLabel: "SecretProject"
     },
     {
       id: 2,
@@ -87,7 +93,8 @@ const ProjectRoadmap = () => {
       gradient: "from-pink-500 to-red-500",
       position: "left",
       role: "President, Server Lead",
-      images: ["pokerbots/pokerbots-1.png", "pokerbots/pokerbots-2.png", "pokerbots/pokerbots-3.png", "pokerbots/pokerbots-4.png", "pokerbots/pokerbots-splash-1.png", "pokerbots/pokerbots-splash-2.png"]
+      images: ["pokerbots/pokerbots-1.png", "pokerbots/pokerbots-2.png", "pokerbots/pokerbots-3.png", "pokerbots/pokerbots-4.png", "pokerbots/pokerbots-splash-1.png", "pokerbots/pokerbots-splash-2.png"],
+      arrowLabel: "ClickMe"
     },
     {
       id: 3,
@@ -97,7 +104,8 @@ const ProjectRoadmap = () => {
       gradient: "from-red-500 to-orange-500",
       position: "right",
       role: "Project Lead",
-      images: ["gatheru/gatheru-2.png", "gatheru/gatheru-3.png", "gatheru/gatheru-4.png", "gatheru/gatheru-5.png", "gatheru/gatheru-6.png", "gatheru/gatheru-admin-1.png", "gatheru/gatheru-admin-2.png", "gatheru/gatheru-admin-3.png", "gatheru/gatheru-admin-4.png", "gatheru/gatheru-1.png"]
+      images: ["gatheru/gatheru-2.png", "gatheru/gatheru-3.png", "gatheru/gatheru-4.png", "gatheru/gatheru-5.png", "gatheru/gatheru-6.png", "gatheru/gatheru-admin-1.png", "gatheru/gatheru-admin-2.png", "gatheru/gatheru-admin-3.png", "gatheru/gatheru-admin-4.png", "gatheru/gatheru-1.png"],
+      arrowLabel: "ClickMe"
     },
     {
       id: 4,
@@ -107,7 +115,8 @@ const ProjectRoadmap = () => {
       gradient: "from-orange-500 to-yellow-500",
       position: "right",
       role: "Backend Lead",
-      images: ["cashcore/cashcore-1.png", "cashcore/cashcore-2.png", "cashcore/cashcore-3.png"]
+      images: ["cashcore/cashcore-1.png", "cashcore/cashcore-2.png", "cashcore/cashcore-3.png"],
+      arrowLabel: "ClickMe"
     }
   ];
 
@@ -120,7 +129,8 @@ const ProjectRoadmap = () => {
       gradient: "from-blue-500 to-purple-500",
       position: "right",
       role: "1st place out of 188 projects at KnightHacks 2025",
-      images: ["finterra/finterra-3.png", "finterra/finterra-2.png", "finterra/finterra-1.png"]
+      images: ["finterra/finterra-3.png", "finterra/finterra-2.png", "finterra/finterra-1.png"],
+      arrowLabel: "ClickMe"
     },
     {
       id: 2,
@@ -131,6 +141,7 @@ const ProjectRoadmap = () => {
       position: "left",
       role: "Placed top 10 of 245 projects at ShellHacks 2025",
       images: ["translateflow/image.png"],
+      arrowLabel: "ClickMe"
     }
   ];
 
