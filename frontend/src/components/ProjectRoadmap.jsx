@@ -27,7 +27,8 @@ const ProjectRoadmap = () => {
       position: "right",
       images: ["roadmap/roadmap-light.png", "roadmap/roadmap-dark.png"],
       underConstruction: true,
-      arrowLabel: "ComingSoon"
+      arrowLabel: "ComingSoon",
+      prjectLink: null
     },
     {
       id: 2,
@@ -38,7 +39,8 @@ const ProjectRoadmap = () => {
       position: "left",
       images: ["bridge/bridge-1.png"],
       underConstruction: true,
-      arrowLabel: "ComingSoon"
+      arrowLabel: "ComingSoon",
+      prjectLink: null
     },
     {
       id: 3,
@@ -48,7 +50,8 @@ const ProjectRoadmap = () => {
       gradient: "from-red-500 to-orange-500",
       position: "right",
       images: ["invest/invest-1.png", "invest/invest-2.png", "invest/invest-3.png", "invest/invest-4.png", "invest/invest-5.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://github.com/hpitta26/Investor-Tinder-MERN"
     },
     {
       id: 4,
@@ -58,7 +61,8 @@ const ProjectRoadmap = () => {
       gradient: "from-orange-500 to-yellow-500",
       position: "left",
       images: ["sm/sm-2.png", "sm/sm-1.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: null
     },
     {
       id: 5,
@@ -68,7 +72,8 @@ const ProjectRoadmap = () => {
       gradient: "from-yellow-500 to-green-500",
       position: "right",
       images: ["expense/expense-1.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://github.com/hpitta26/Personal_Expense_Manager_Project-JavaSwing"
     }
   ];
 
@@ -83,7 +88,8 @@ const ProjectRoadmap = () => {
       role: "Software/AI Engineer Intern",
       images: ["euleris/severus-rsvp.png"],
       underConstruction: true,
-      arrowLabel: "SecretProject"
+      arrowLabel: "SecretProject",
+      prjectLink: null
     },
     {
       id: 2,
@@ -94,7 +100,8 @@ const ProjectRoadmap = () => {
       position: "left",
       role: "President, Server Lead",
       images: ["pokerbots/pokerbots-1.png", "pokerbots/pokerbots-2.png", "pokerbots/pokerbots-3.png", "pokerbots/pokerbots-4.png", "pokerbots/pokerbots-splash-1.png", "pokerbots/pokerbots-splash-2.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://github.com/FIU-PokerBots"
     },
     {
       id: 3,
@@ -105,7 +112,8 @@ const ProjectRoadmap = () => {
       position: "right",
       role: "Project Lead",
       images: ["gatheru/gatheru-2.png", "gatheru/gatheru-3.png", "gatheru/gatheru-4.png", "gatheru/gatheru-5.png", "gatheru/gatheru-6.png", "gatheru/gatheru-admin-1.png", "gatheru/gatheru-admin-2.png", "gatheru/gatheru-admin-3.png", "gatheru/gatheru-admin-4.png", "gatheru/gatheru-1.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://github.com/hpitta26/club-event-hub"
     },
     {
       id: 4,
@@ -116,7 +124,8 @@ const ProjectRoadmap = () => {
       position: "right",
       role: "Backend Lead",
       images: ["cashcore/cashcore-1.png", "cashcore/cashcore-2.png", "cashcore/cashcore-3.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://github.com/Ceaseless04/Cashcore"
     }
   ];
 
@@ -130,7 +139,8 @@ const ProjectRoadmap = () => {
       position: "right",
       role: "1st place out of 188 projects at KnightHacks 2025",
       images: ["finterra/finterra-3.png", "finterra/finterra-2.png", "finterra/finterra-1.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://finterras.com"
     },
     {
       id: 2,
@@ -141,7 +151,8 @@ const ProjectRoadmap = () => {
       position: "left",
       role: "Placed top 10 of 245 projects at ShellHacks 2025",
       images: ["translateflow/image.png"],
-      arrowLabel: "ClickMe"
+      arrowLabel: "ClickMe",
+      prjectLink: "https://github.com/hpitta26/Shellhacks-2025"
     }
   ];
 

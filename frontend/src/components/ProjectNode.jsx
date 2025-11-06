@@ -70,13 +70,27 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 flex justify-center relative`}>
         <div className="relative">
           {/* Arrow-4 SVG Overlay - positioned outside on top */}
-          <div className={`absolute ${isLeft ? '-top-13 left-5' : '-top-13 right-5'} z-30 pointer-events-none`}>
+          <div className={`absolute ${isLeft ? '-top-13 left-5' : '-top-13 right-5'} z-30 ${project.prjectLink ? 'pointer-events-auto' : 'pointer-events-none'}`}>
             {/* Arrow Label Text */}
-            <div className="absolute -top-7 left-7 transform whitespace-nowrap" style={{transform: `translateX(${isLeft ? '-75%' : '-25%'})`}}>
-              <span className="text-purple-300 text-sm font-medium">
-                {arrowLabels[project.arrowLabel]}
-              </span>
-            </div>
+            {project.prjectLink ? (
+              <a 
+                href={project.prjectLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute -top-7 left-7 transform whitespace-nowrap cursor-pointer transition-colors duration-200" 
+                style={{transform: `translateX(${isLeft ? '-75%' : '-25%'})`}}
+              >
+                <span className="text-purple-300 text-sm font-medium underline hover:text-purple-200">
+                  {arrowLabels[project.arrowLabel]}
+                </span>
+              </a>
+            ) : (
+              <div className="absolute -top-7 left-7 transform whitespace-nowrap" style={{transform: `translateX(${isLeft ? '-75%' : '-25%'})`}}>
+                <span className="text-purple-300 text-sm font-medium">
+                  {arrowLabels[project.arrowLabel]}
+                </span>
+              </div>
+            )}
             
             {/* Arrow SVG */}
             <div className="w-14 h-14" style={{filter: 'drop-shadow(0 0 8px rgba(168, 85, 247, 0.8))'}}>
