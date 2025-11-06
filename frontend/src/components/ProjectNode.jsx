@@ -63,9 +63,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       {/* Larger Project Node */}
       <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 flex justify-center relative`}>
         <div className="relative">
-          {/* Top connection point */}
-          {/* <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-t-sm border-1 border-white shadow-lg z-20"></div> */}
-          
           {/* Bigger Node card with outer frame - responsive width with maintained aspect ratio */}
           <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{aspectRatio: '600/380'}}>
             {/* Outer Frosted Glass Frame */}
@@ -147,11 +144,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               )}
             </div>
           </div>
-
-          {/* Bottom connection point */}
-          {/* {!isLast && (
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-2.5 bg-white rounded-b-sm border-1 border-white shadow-lg z-20"></div>
-          )} */}
         </div>
       </div>
 
