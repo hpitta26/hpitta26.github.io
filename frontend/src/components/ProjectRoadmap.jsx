@@ -216,7 +216,7 @@ const ProjectRoadmap = () => {
             {getSectionTitle()}
           </h2>
           <p className="text-xl text-purple-200 max-w-2xl mx-auto">
-            Explore the depths of my development journey through these interconnected experiences
+            Explore the depths of my development journey
           </p>
         </div>
 

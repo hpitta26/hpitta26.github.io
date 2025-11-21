@@ -28,42 +28,44 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   return (
     <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
       {/* Project Description - Below node on small screens */}
-      <div className={`${isLeft ? 'lg:order-2 lg:text-right' : 'lg:order-1'} order-2 z-10 text-center lg:text-left ${isLeft ? 'lg:text-right' : ''}`}>
-        <h3 className="text-3xl font-bold text-white mb-2">
-          {project.title}
-        </h3>
-        {project.role && (
-          <p className="text-purple-300 text-sm font-medium mb-4">
-            {project.role}
+      <div className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} order-2 z-10 flex justify-center`}>
+        <div className={`${isLeft ? 'lg:text-right' : 'lg:text-left'} text-center w-full max-w-[600px] min-w-[320px] px-4 sm:px-8 lg:px-0`}>
+          <h3 className="text-3xl font-bold text-white mb-2">
+            {project.title}
+          </h3>
+          {project.role && (
+            <p className="text-purple-300 text-sm font-medium mb-4">
+              {project.role}
+            </p>
+          )}
+          <p className="text-gray-300 text-lg leading-relaxed mb-6">
+            {project.description}
           </p>
-        )}
-        <p className="text-gray-300 text-lg leading-relaxed mb-6">
-          {project.description}
-        </p>
-        <div className={`flex flex-wrap gap-1 justify-center ${isLeft ? 'lg:justify-end' : 'lg:justify-start'}`}>
-          {project.tags.map((tag, index) => (
-            <span 
-              key={index}
-              className="px-3 py-1 bg-purple-600/30 text-purple-200 rounded-full text-sm font-medium border border-purple-500/30"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
+          <div className={`flex flex-wrap gap-1 ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
+            {project.tags.map((tag, index) => (
+              <span 
+                key={index}
+                className="px-3 py-1 bg-purple-600/30 text-purple-200 rounded-full text-sm font-medium border border-purple-500/30"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
-        {/* Under Construction Banner */}
-        {project.underConstruction && (
-          <div className={`mt-4 flex ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
-            <div className="bg-yellow-500/90 backdrop-blur-sm text-black px-3 py-2 rounded-lg border border-yellow-400 shadow-lg">
-              <div className="flex items-center space-x-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
-                <span className="text-sm font-bold">Under Construction</span>
+          {/* Under Construction Banner */}
+          {project.underConstruction && (
+            <div className={`mt-4 flex ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
+              <div className="bg-yellow-500/90 backdrop-blur-sm text-black px-3 py-2 rounded-lg border border-yellow-400 shadow-lg">
+                <div className="flex items-center space-x-2">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-sm font-bold">Under Construction</span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Larger Project Node */}
@@ -107,7 +109,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
             {/* Outer Frosted Glass Frame */}
             <div className="w-full h-full bg-[#33204a] rounded-3xl p-3 shadow-2xl border border-[#5b4c6e]">
               {/* Inner Glass Card */}
-              {project.images && project.images.length > 0 ? (
                 <div className="w-full h-full rounded-lg overflow-hidden relative group">
                   <img 
                     src={`/assets/${project.images[currentImageIndex]}`}
@@ -163,24 +164,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                     </>
                   )}
                 </div>
-              ) : (
-                <div className={`w-full h-full bg-gradient-to-br ${project.gradient} bg-opacity-20 backdrop-blur-md rounded-lg border border-white/30 overflow-hidden`} style={{backgroundColor: 'rgba(255, 255, 255, 0.1)'}}>
-                  <div className="relative z-10 p-8 h-full">
-                    <div className="flex items-center justify-between h-full">
-                      <div className="flex-1 flex items-center justify-center">
-                        <div className="w-48 h-32 bg-white/10 rounded-2xl border border-white/20 flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="w-12 h-12 bg-white/20 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                              <span className="text-white text-lg">🎯</span>
-                            </div>
-                            <span className="text-white/60 text-xs">Project Demo</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

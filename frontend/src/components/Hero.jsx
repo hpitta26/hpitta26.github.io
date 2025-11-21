@@ -36,7 +36,7 @@ const Hero = () => {
               Software & AI Engineer
             </h2>
             <p className="text-lg md:text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed">
-              tbh I like to build anything as long as it's cool and challenging.
+              I enjoy finding creative solutions to complex problems
             </p>
           </div>
         </div>
