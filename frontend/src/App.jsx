@@ -5,10 +5,10 @@ import VideoPage from './pages/VideoPage';
 
 function App() {
   return (
-    <BrowserRouter basename="/cgs-presentation">
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<VideoPage />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cgs-presentation" element={<VideoPage />} />
       </Routes>
     </BrowserRouter>
   );
