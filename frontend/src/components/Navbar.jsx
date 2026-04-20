@@ -38,25 +38,25 @@ const Navbar = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link 
-                to="/" 
+                to="/home" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Home
               </Link>
               <Link 
-                to="/video" 
+                to="/" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Video
               </Link>
               <a 
-                href="/#projects" 
+                href="/cgs-presentation/home#projects" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Projects
               </a>
               <a 
-                href="/#contact" 
+                href="/cgs-presentation/home#contact" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Contact
@@ -92,7 +92,7 @@ const Navbar = () => {
             : 'bg-white/10 backdrop-blur-md border-white/20 shadow-lg'
         }`}>
           <Link 
-            to="/" 
+            to="/home" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
@@ -101,7 +101,7 @@ const Navbar = () => {
             Home
           </Link>
           <Link 
-            to="/video" 
+            to="/" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
@@ -110,7 +110,7 @@ const Navbar = () => {
             Video
           </Link>
           <a 
-            href="/#projects" 
+            href="/cgs-presentation/home#projects" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
@@ -119,7 +119,7 @@ const Navbar = () => {
             Projects
           </a>
           <a 
-            href="/#contact" 
+            href="/cgs-presentation/home#contact" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
