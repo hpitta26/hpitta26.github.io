@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -28,28 +29,34 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-white font-bold text-xl">
+            <Link to="/" className="text-white font-bold text-xl">
               HP
-            </a>
+            </Link>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a 
-                href="#" 
+              <Link 
+                to="/" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Home
-              </a>
+              </Link>
+              <Link 
+                to="/video" 
+                className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
+              >
+                Video
+              </Link>
               <a 
-                href="#projects" 
+                href="/#projects" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Projects
               </a>
               <a 
-                href="#contact" 
+                href="/#contact" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Contact
@@ -84,17 +91,26 @@ const Navbar = () => {
             ? 'bg-[#1a0836] backdrop-blur-sm border-[#220f3c]' 
             : 'bg-white/10 backdrop-blur-md border-white/20 shadow-lg'
         }`}>
-          <a 
-            href="#" 
+          <Link 
+            to="/" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
             }`}
           >
             Home
-          </a>
+          </Link>
+          <Link 
+            to="/video" 
+            onClick={() => setMobileMenuOpen(false)}
+            className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
+              scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
+            }`}
+          >
+            Video
+          </Link>
           <a 
-            href="#projects" 
+            href="/#projects" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
@@ -103,7 +119,7 @@ const Navbar = () => {
             Projects
           </a>
           <a 
-            href="#contact" 
+            href="/#contact" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'

@@ -1,17 +1,16 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import ProjectRoadmap from './components/ProjectRoadmap';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import VideoPage from './pages/VideoPage';
 
 function App() {
   return (
-    <div className="min-h-screen bg-purple-600">
-      <Navbar />
-      <Hero />
-      <ProjectRoadmap />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cgs-presentation" element={<VideoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
