@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { HiOutlineMenu } from "react-icons/hi";
+import { CgClose } from "react-icons/cg";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,26 +30,20 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex-shrink-0">
-            <Link to="/" className="text-white font-bold text-xl">
+            <a href="/#" className="text-white font-bold text-xl">
               HP
-            </Link>
+            </a>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <Link 
-                to="/" 
+              <a 
+                href="/#" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
               >
                 Home
-              </Link>
-              <Link 
-                to="/cgs-presentation" 
-                className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
-              >
-                Video
-              </Link>
+              </a>
               <a 
                 href="/#projects" 
                 className="text-white hover:text-purple-200 transition-colors duration-200 font-medium"
@@ -70,13 +65,11 @@ const Navbar = () => {
               onClick={toggleMobileMenu}
               className="text-white hover:text-purple-200 focus:outline-none transition-colors duration-200"
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              {mobileMenuOpen ? (
+                <CgClose className="h-6 w-6" />
+              ) : (
+                <HiOutlineMenu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -91,24 +84,15 @@ const Navbar = () => {
             ? 'bg-[#1a0836] backdrop-blur-sm border-[#220f3c]' 
             : 'bg-white/10 backdrop-blur-md border-white/20 shadow-lg'
         }`}>
-          <Link 
-            to="/" 
+          <a 
+            href="/#" 
             onClick={() => setMobileMenuOpen(false)}
             className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
               scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
             }`}
           >
             Home
-          </Link>
-          <Link 
-            to="/cgs-presentation" 
-            onClick={() => setMobileMenuOpen(false)}
-            className={`block px-3 py-2 text-white hover:text-purple-200 rounded-md transition-colors duration-200 font-medium ${
-              scrolled ? 'hover:bg-[#220f3c]' : 'hover:bg-white/20'
-            }`}
-          >
-            Video
-          </Link>
+          </a>
           <a 
             href="/#projects" 
             onClick={() => setMobileMenuOpen(false)}
