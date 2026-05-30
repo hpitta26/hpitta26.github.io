@@ -14,7 +14,7 @@ const Hero = () => {
       
       {/* Parallax Background Layers */}
       <div className="absolute inset-0">
-        {/* Sky Background (slowest layer) */}
+        {/* Sky Background */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -80,18 +80,30 @@ const Hero = () => {
       <div className="relative z-20 flex flex-col items-center justify-center h-screen px-4 sm:px-6 lg:px-8 pt-20">
         <div className="text-center max-w-4xl mx-auto mt-12">
           <div className="animate-fade-in-up">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
+            <h1
+              className="font-bold text-white tracking-tight"
+              style={{ fontSize: 'clamp(2.45rem, 8vw, 4.5rem)' }}
+            >
               Henrique Pitta
             </h1>
             <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
-              <h2 className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm md:text-base font-medium text-purple-50 backdrop-blur-md shadow-sm">
-                CS &amp; Math @ FIU
+              <h2
+                className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 font-medium text-purple-50 backdrop-blur-md shadow-sm"
+                style={{ fontSize: 'clamp(0.7rem, 2.2vw, 1rem)' }}
+              >
+                CS & Math @ FIU
               </h2>
-              <h2 className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm md:text-base font-medium text-purple-50 backdrop-blur-md shadow-sm">
+              <h2
+                className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 font-medium text-purple-50 backdrop-blur-md shadow-sm"
+                style={{ fontSize: 'clamp(0.7rem, 2.2vw, 1rem)' }}
+              >
                 Dir. of Tech @ INIT
               </h2>
             </div>
-            <p className="text-lg md:text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed">
+            <p
+              className="text-purple-50 mb-14 max-w-2xl mx-auto leading-relaxed"
+              style={{ fontSize: 'clamp(0.85rem, 3.2vw, 1.25rem)' }}
+            >
               I enjoy finding creative solutions to complex problems
             </p>
           </div>
