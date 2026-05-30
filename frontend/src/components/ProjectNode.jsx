@@ -78,9 +78,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       background:
-                        'linear-gradient(145deg, rgba(26,8,54,0.30), rgba(26,8,54,0.22))',
-                      backdropFilter: 'saturate(0.9) blur(0.1px)',
-                      WebkitBackdropFilter: 'saturate(0.9) blur(0.5px)',
+                        'linear-gradient(5deg, rgba(26,8,54,0.20), rgba(26,8,54,0.20))',
+                      backdropFilter: 'saturate(0.95) blur(0.1px)',
+                      WebkitBackdropFilter: 'saturate(0.9) blur(0.1px)',
                       zIndex: 1
                     }}
                   />
