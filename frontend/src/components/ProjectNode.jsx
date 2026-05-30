@@ -53,14 +53,36 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         <div className="relative">
           {/* Bigger Node card with outer frame - responsive width with maintained aspect ratio */}
           <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{aspectRatio: '600/380'}}>
-            {/* Outer Frosted Glass Frame */}
-            <div className="w-full h-full bg-[#33204a] rounded-3xl p-3 shadow-2xl border border-[#5b4c6e]">
+            {/* Outer Neumorphic Frame - blurred backing melts the node edges into the surface */}
+            <div className="w-full h-full rounded-2xl p-4.5 relative">
+              {/* Blurred backing: fill + raised shadows, blurred so the node edges look soft/neumorphic */}
+              <div
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  background: '#1a0836',
+                  boxShadow:
+                    '8px 8px 12px rgba(0,0,0,0.8), -8px -8px 12px rgba(255,255,255,0.1)',
+                  filter: 'blur(2px)'
+                }}
+              />
               {/* Inner Glass Card */}
-                <div className="w-full h-full rounded-lg overflow-hidden relative group">
+                <div className="w-full h-full rounded-lg overflow-hidden relative z-[1] group">
                   <img 
                     src={`/assets/${project.images[currentImageIndex]}`}
                     alt={`${project.title} screenshot ${currentImageIndex + 1}`}
                     className="w-full h-full object-cover transition-all duration-300"
+                  />
+
+                  {/* Subtle frosted dulling layer so bright screenshots sink into the theme */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        'linear-gradient(145deg, rgba(26,8,54,0.30), rgba(26,8,54,0.22))',
+                      backdropFilter: 'saturate(0.9) blur(0.1px)',
+                      WebkitBackdropFilter: 'saturate(0.9) blur(0.5px)',
+                      zIndex: 1
+                    }}
                   />
                   
                   {/* Navigation arrows - only show if multiple images */}
@@ -146,7 +168,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               fill="none"
               stroke="#8b5cf6"
               strokeWidth="1.5"
-              strokeDasharray="3,2"
               className=""
               style={{
                 filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
@@ -174,7 +195,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               fill="none"
               stroke="#8b5cf6"
               strokeWidth="0.4"
-              strokeDasharray="4,3"
               style={{
                 filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
               }}
