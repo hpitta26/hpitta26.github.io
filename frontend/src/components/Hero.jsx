@@ -112,7 +112,7 @@ const Hero = () => {
         {/* Developer and Ground - Grouped with hero content */}
         <div className="w-screen pointer-events-none scale-180 sm:scale-130 lg:scale-105">
           <img 
-            src="/assets/coder-ground-combined.svg" 
+            src="/assets/coder-ground.svg" 
             alt="Developer at workstation with ground transition" 
             className="h-auto"
           />
