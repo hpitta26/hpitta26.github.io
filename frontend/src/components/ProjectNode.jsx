@@ -4,12 +4,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   const isLeft = project.position === 'left';
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const arrowLabels = {
-    "ClickMe": "Click me!",
-    "SecretProject": "Shh... secret!",
-    "ComingSoon": "Coming soon..."
-  }
-
   const nextImage = () => {
     if (project.images && project.images.length > 1 && currentImageIndex < project.images.length - 1) {
       setCurrentImageIndex((prev) => prev + 1);
@@ -30,9 +24,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
       {/* Project Description - Below node on small screens */}
       <div className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} order-2 z-10 flex justify-center`}>
         <div className={`${isLeft ? 'lg:text-right' : 'lg:text-left'} text-center w-full max-w-[600px] min-w-[320px] px-4 sm:px-8 lg:px-0`}>
-          <h3 className="text-3xl font-bold text-white mb-2">
+          <h2 className="text-4xl font-bold text-white mb-2">
             {project.title}
-          </h3>
+          </h2>
           {project.role && (
             <p className="text-purple-300 text-sm font-medium mb-4">
               {project.role}
@@ -51,59 +45,12 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               </span>
             ))}
           </div>
-
-          {/* Under Construction Banner */}
-          {project.underConstruction && (
-            <div className={`mt-4 flex ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
-              <div className="bg-yellow-500/90 backdrop-blur-sm text-black px-3 py-2 rounded-lg border border-yellow-400 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-sm font-bold">Under Construction</span>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
       {/* Larger Project Node */}
       <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 flex justify-center relative`}>
         <div className="relative">
-          {/* Arrow-4 SVG Overlay - positioned outside on top */}
-          <div className={`absolute ${isLeft ? '-top-13 left-5' : '-top-13 right-5'} z-30 ${project.prjectLink ? 'pointer-events-auto' : 'pointer-events-none'}`}>
-            {/* Arrow Label Text */}
-            {project.prjectLink ? (
-              <a 
-                href={project.prjectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute -top-7 left-7 transform whitespace-nowrap cursor-pointer transition-colors duration-200" 
-                style={{transform: `translateX(${isLeft ? '-75%' : '-25%'})`}}
-              >
-                <span className="text-purple-300 text-sm font-medium underline hover:text-purple-200">
-                  {arrowLabels[project.arrowLabel]}
-                </span>
-              </a>
-            ) : (
-              <div className="absolute -top-7 left-7 transform whitespace-nowrap" style={{transform: `translateX(${isLeft ? '-75%' : '-25%'})`}}>
-                <span className="text-purple-300 text-sm font-medium">
-                  {arrowLabels[project.arrowLabel]}
-                </span>
-              </div>
-            )}
-            
-            {/* Arrow SVG */}
-            <div className="w-14 h-14" style={{filter: 'drop-shadow(0 0 8px rgba(168, 85, 247, 0.8))'}}>
-              <img 
-                src="/assets/arrow-4.svg"
-                alt="Arrow decoration"
-                className={`w-full h-full invert ${isLeft ? 'scale-x-[-1]' : ''}`}
-              />
-            </div>
-          </div>
-          
           {/* Bigger Node card with outer frame - responsive width with maintained aspect ratio */}
           <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{aspectRatio: '600/380'}}>
             {/* Outer Frosted Glass Frame */}

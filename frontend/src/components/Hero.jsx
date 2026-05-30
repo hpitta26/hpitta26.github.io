@@ -80,12 +80,17 @@ const Hero = () => {
       <div className="relative z-20 flex flex-col items-center justify-center h-screen px-4 sm:px-6 lg:px-8 pt-20">
         <div className="text-center max-w-4xl mx-auto mt-12">
           <div className="animate-fade-in-up">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
               Henrique Pitta
             </h1>
-            <h2 className="text-xl md:text-2xl text-purple-200 mb-2 font-medium">
-              Software & AI Engineer
-            </h2>
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-2">
+              <h2 className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm md:text-base font-medium text-purple-50 backdrop-blur-md shadow-sm">
+                CS &amp; Math @ FIU
+              </h2>
+              <h2 className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm md:text-base font-medium text-purple-50 backdrop-blur-md shadow-sm">
+                Dir. of Tech @ INIT
+              </h2>
+            </div>
             <p className="text-lg md:text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed">
               I enjoy finding creative solutions to complex problems
             </p>
