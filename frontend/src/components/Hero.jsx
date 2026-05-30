@@ -23,7 +23,58 @@ const Hero = () => {
             willChange: 'transform'
           }}
         />
-      </div>      
+
+        {/* Drifting aurora glows in complementary tones */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="aurora-blob"
+            style={{
+              top: '-15%',
+              left: '0%',
+              width: '50vw',
+              height: '50vw',
+              background: 'radial-gradient(circle at center, rgba(13,148,136,0.75), rgba(13,148,136,0) 70%)',
+              animation: 'auroraDriftA 13s ease-in-out infinite'
+            }}
+          />
+          <div
+            className="aurora-blob"
+            style={{
+              top: '-5%',
+              right: '-5%',
+              width: '42vw',
+              height: '42vw',
+              background: 'radial-gradient(circle at center, rgba(29,78,216,0.70), rgba(29,78,216,0) 70%)',
+              animation: 'auroraDriftB 16s ease-in-out infinite'
+            }}
+          />
+          <div
+            className="aurora-blob"
+            style={{
+              top: '10%',
+              left: '28%',
+              width: '46vw',
+              height: '46vw',
+              background: 'radial-gradient(circle at center, rgba(4,120,87,0.65), rgba(4,120,87,0) 70%)',
+              animation: 'auroraDriftC 19s ease-in-out infinite'
+            }}
+          />
+          <div
+            className="aurora-blob"
+            style={{
+              top: '0%',
+              right: '22%',
+              width: '26vw',
+              height: '26vw',
+              background: 'radial-gradient(circle at center, rgba(180,83,9,0.55), rgba(180,83,9,0) 70%)',
+              animation: 'auroraDriftA 22s ease-in-out infinite reverse'
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Film grain overlay */}
+      <div className="hero-grain absolute inset-0 z-10 pointer-events-none" />      
 
       {/* Hero content with Developer */}
       <div className="relative z-20 flex flex-col items-center justify-center h-screen px-4 sm:px-6 lg:px-8 pt-20">
