@@ -190,13 +190,13 @@ const Hero = () => {
                 className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 font-medium text-purple-50 backdrop-blur-md shadow-sm"
                 style={{ fontSize: 'clamp(0.7rem, 2.2vw, 1rem)' }}
               >
-                CS & Math @ FIU
+                CS & Math @ <a className="hover:underline decoration-wavy hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.85)] hover:font-semibold transition-all duration-100" href="https://www.fiu.edu/" target="_blank" rel="noopener noreferrer">FIU</a>
               </h2>
               <h2
                 className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 font-medium text-purple-50 backdrop-blur-md shadow-sm"
                 style={{ fontSize: 'clamp(0.7rem, 2.2vw, 1rem)' }}
               >
-                Dir. of Tech @ INIT
+                Dir. of Tech @ <a className="hover:underline decoration-wavy hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.85)] hover:font-semibold transition-all duration-100" href="https://www.weareinit.org/" target="_blank" rel="noopener noreferrer">INIT</a>
               </h2>
             </div>
             <p
