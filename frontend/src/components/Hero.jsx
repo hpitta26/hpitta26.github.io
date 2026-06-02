@@ -71,6 +71,105 @@ const Hero = () => {
             }}
           />
         </div>
+
+        {/* Drifting clouds */}
+        <div
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          style={{ transform: `translateY(${scrollY * 0.04}px)` }}
+        >
+          {/* Deep, faint clouds high in the sky */}
+          <img
+            src="/assets/cloud_blue_2.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero-cloud"
+            style={{
+              top: '2%',
+              left: '-8%',
+              width: '40vw',
+              '--cloud-opacity': 0.5,
+              opacity: 0.5,
+              filter: 'blur(2px)',
+              animation: 'cloudDriftWide 34s ease-in-out infinite, cloudBreathe 18s ease-in-out infinite'
+            }}
+          />
+          <img
+            src="/assets/cloud_blue_1.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero-cloud"
+            style={{
+              top: '6%',
+              right: '-6%',
+              width: '32vw',
+              '--cloud-opacity': 0.55,
+              opacity: 0.55,
+              filter: 'blur(1.5px)',
+              animation: 'cloudDriftMed 28s ease-in-out infinite, cloudBreathe 21s ease-in-out infinite'
+            }}
+          />
+          {/* Mid-depth clouds */}
+          <img
+            src="/assets/cloud_blue_4.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero-cloud"
+            style={{
+              top: '30%',
+              left: '6%',
+              width: '34vw',
+              '--cloud-opacity': 0.6,
+              opacity: 0.6,
+              filter: 'blur(0.5px)',
+              animation: 'cloudDriftSlow 30s ease-in-out infinite, cloudBreathe 24s ease-in-out infinite'
+            }}
+          />
+          <img
+            src="/assets/cloud_blue_3.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero-cloud"
+            style={{
+              top: '40%',
+              right: '4%',
+              width: '32vw',
+              '--cloud-opacity': 0.65,
+              opacity: 0.65,
+              animation: 'cloudDriftWide 26s ease-in-out infinite, cloudBreathe 19s ease-in-out infinite'
+            }}
+          />
+          {/* Closer, brighter clouds framing the coder */}
+          <img
+            src="/assets/cloud_blue_1.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero-cloud"
+            style={{
+              bottom: '18%',
+              left: '-10%',
+              width: '42vw',
+              '--cloud-opacity': 0.9,
+              opacity: 0.9,
+              filter: 'drop-shadow(0 0 28px rgba(186,210,255,0.45))',
+              animation: 'cloudDriftMed 32s ease-in-out infinite'
+            }}
+          />
+          <img
+            src="/assets/cloud_blue_4.svg"
+            alt=""
+            aria-hidden="true"
+            className="hero-cloud"
+            style={{
+              bottom: '12%',
+              right: '-12%',
+              width: '46vw',
+              '--cloud-opacity': 0.92,
+              opacity: 0.92,
+              filter: 'drop-shadow(0 0 30px rgba(186,210,255,0.5))',
+              animation: 'cloudDriftSlow 36s ease-in-out infinite'
+            }}
+          />
+        </div>
       </div>
 
       {/* Film grain overlay */}
@@ -110,12 +209,18 @@ const Hero = () => {
         </div>
         
         {/* Developer and Ground - Grouped with hero content */}
-        <div className="w-screen pointer-events-none scale-180 sm:scale-130 lg:scale-105">
+        <div className="relative w-screen pointer-events-none scale-180 sm:scale-130 lg:scale-105">
           <img 
             src="/assets/coder-ground.svg" 
             alt="Developer at workstation with ground transition" 
             className="h-auto"
           />
+          {/* Coffee steam rising from the white mug */}
+          <div className="coffee-steam" aria-hidden="true">
+            <span className="steam s1" />
+            <span className="steam s2" />
+            <span className="steam s3" />
+          </div>
         </div>
         
         {/* Fill remaining space with background - cover any pixel gaps */}

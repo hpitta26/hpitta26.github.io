@@ -76,6 +76,95 @@ h3 {
     will-change: transform;
   }
 
+  /* Drifting clouds */
+  .hero-cloud {
+    position: absolute;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  @keyframes cloudDriftSlow {
+    0%   { transform: translate3d(0, 0, 0); }
+    50%  { transform: translate3d(4vw, -1.2vh, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes cloudDriftMed {
+    0%   { transform: translate3d(0, 0, 0); }
+    50%  { transform: translate3d(-5vw, 1.4vh, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes cloudDriftWide {
+    0%   { transform: translate3d(-3vw, 0, 0); }
+    50%  { transform: translate3d(6vw, -2vh, 0); }
+    100% { transform: translate3d(-3vw, 0, 0); }
+  }
+
+  @keyframes cloudBreathe {
+    0%, 100% { opacity: var(--cloud-opacity, 0.8); }
+    50%      { opacity: calc(var(--cloud-opacity, 0.8) * 0.7); }
+  }
+
+  /* Coffee steam
+     Anchored as a percentage of the coder-ground.svg box so it stays
+     glued to the mug across breakpoints. */
+  .coffee-steam {
+    position: absolute;
+    top: 37%;
+    left: 58%;
+    width: 0;
+    height: 0;
+  }
+
+  .coffee-steam .steam {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2vw;
+    height: 2vw;
+    margin-left: -1vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 70%);
+    filter: blur(1.6px);
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  /* Movement only */
+  @keyframes steamMoveA {
+    0% { transform: translate3d(0, 0, 0) scale(0.4); }
+    20% { transform: translate3d(-0.25vw, -1.3vw, 0) scale(0.65); }
+    55% { transform: translate3d(-0.7vw, -3.6vw, 0) scale(1.05); }
+    100% { transform: translate3d(0.5vw, -7vw, 0) scale(1.8); }
+  }
+
+  @keyframes steamMoveB {
+    0% { transform: translate3d(0, 0, 0) scale(0.45); }
+    20% { transform: translate3d(0.25vw, -1.4vw, 0) scale(0.7); }
+    55% { transform: translate3d(0.7vw, -3.8vw, 0) scale(1.1); }
+    100% { transform: translate3d(-0.5vw, -7.4vw, 0) scale(1.9); }
+  }
+
+  /* Fade only */
+  @keyframes steamFadeA {
+    0% { opacity: 0; }
+    20% { opacity: 0.7; }
+    55% { opacity: 0.42; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes steamFadeB {
+    0% { opacity: 0; }
+    20% { opacity: 0.6; }
+    55% { opacity: 0.36; }
+    100% { opacity: 0; }
+  }
+
+  .coffee-steam .s1 { animation: steamMoveA 6.5s linear infinite, steamFadeA 6.5s ease-out infinite; }
+  .coffee-steam .s2 { animation: steamMoveB 6.5s linear infinite 2.2s, steamFadeB 6.5s ease-out infinite 2.2s; }
+  .coffee-steam .s3 { animation: steamMoveA 7s linear infinite 4.3s, steamFadeA 7s ease-out infinite 4.3s; }
+
   /* Subtle film grain to remove flat gradient banding */
   .hero-grain {
     background-image: url("/assets/background-grain.jpg");
@@ -87,8 +176,13 @@ h3 {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora-blob {
+    .aurora-blob,
+    .hero-cloud {
       animation: none !important;
+    }
+    .coffee-steam .steam {
+      animation: none !important;
+      opacity: 0 !important;
     }
   }
 }
