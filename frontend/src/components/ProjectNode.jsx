@@ -58,21 +58,18 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           </h2>
 
           {project.role && (
-            <p
-              className={`mb-5 flex items-center gap-2.5 text-sm font-medium leading-snug text-ember/90 ${
-                isLeft ? 'lg:justify-end' : 'lg:justify-start'
-              } justify-center`}
-            >
-              <span
-                className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-ember"
-                style={{ boxShadow: '0 0 9px rgba(243,215,163,0.95)' }}
-                aria-hidden="true"
-              />
+            <p className="mb-5 text-sm font-medium leading-snug text-ember/90">
               {project.role}
             </p>
           )}
 
-          <p className="mb-6 text-lg font-light leading-relaxed text-star/70">
+          {/* Measure capped in ch: at 600px these lines ran long enough to
+              make the eye lose its place on the return sweep. */}
+          <p
+            className={`mb-6 max-w-[58ch] text-lg font-light leading-relaxed text-star/70 ${
+              isLeft ? 'lg:ml-auto' : ''
+            } mx-auto lg:mx-0`}
+          >
             {project.description}
           </p>
 
@@ -101,7 +98,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
             <div className="group w-full h-full rounded-2xl p-4.5 relative">
               {/* Blurred backing: fill + raised shadows, blurred so the node edges look soft/neumorphic */}
               <div
-                className="absolute inset-0 rounded-3xl"
+                className="absolute inset-0 rounded-2xl"
                 style={{
                   background: '#1a0836',
                   boxShadow:
@@ -110,20 +107,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                 }}
               />
 
-              {/* Ambient signal glow behind the plate, brightening on approach */}
-              <div
-                className="absolute -inset-2 rounded-[1.75rem] pointer-events-none opacity-40 transition-opacity duration-500 group-hover:opacity-100"
-                style={{
-                  background:
-                    'radial-gradient(62% 62% at 50% 48%, rgba(243,215,163,0.16), rgba(201,163,106,0) 72%)',
-                  filter: 'blur(16px)'
-                }}
-                aria-hidden="true"
-              />
-
               {/* Hairline rim */}
               <div
-                className="absolute inset-0 rounded-2xl pointer-events-none border border-ember/22 transition-colors duration-500 group-hover:border-ember/50"
+                className="absolute inset-0 rounded-2xl pointer-events-none border border-ember/20 transition-colors duration-500 group-hover:border-ember/45"
                 aria-hidden="true"
               />
 
@@ -132,7 +118,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                 <img
                   src={`/assets/${project.images[currentImageIndex]}`}
                   alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  className="w-full h-full object-cover"
                 />
 
                 {/* Screenshots are bright and each has its own palette. This
@@ -168,7 +154,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       className={`${arrowBase} left-2 sm:left-2.5 ${
                         isFirstImage
                           ? 'cursor-not-allowed border-white/5 bg-night-deep/40 text-white/20'
-                          : 'cursor-pointer border-lilac/35 bg-night-deep/55 text-star/80 hover:border-blush/70 hover:bg-night-deep/80 hover:text-white'
+                          : 'cursor-pointer border-lilac/35 bg-night-deep/55 text-star/80 hover:border-ember/60 hover:bg-night-deep/80 hover:text-white'
                       }`}
                     >
                       <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -184,7 +170,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       className={`${arrowBase} right-2 sm:right-2.5 ${
                         isLastImage
                           ? 'cursor-not-allowed border-white/5 bg-night-deep/40 text-white/20'
-                          : 'cursor-pointer border-lilac/35 bg-night-deep/55 text-star/80 hover:border-blush/70 hover:bg-night-deep/80 hover:text-white'
+                          : 'cursor-pointer border-lilac/35 bg-night-deep/55 text-star/80 hover:border-ember/60 hover:bg-night-deep/80 hover:text-white'
                       }`}
                     >
                       <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,14 +188,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                           aria-current={index === currentImageIndex}
                           className={`h-[3px] cursor-pointer rounded-full transition-all duration-300 ${
                             index === currentImageIndex
-                              ? 'w-5 bg-blush'
+                              ? 'w-5 bg-ember'
                               : 'w-2 bg-white/30 hover:bg-white/60'
                           }`}
-                          style={
-                            index === currentImageIndex
-                              ? { boxShadow: '0 0 8px rgba(242,204,215,0.8)' }
-                              : undefined
-                          }
                         />
                       ))}
                     </div>
@@ -311,7 +292,10 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         </div>
       )}
 
-      {/* Simple vertical connection line for smaller screens */}
+      {/* Stacked layout: the vein spans only the margin between nodes, so it
+          links plate to plate instead of striking through the copy and the
+          card. The 144px must stay in step with the mb-36 node wrapper in
+          ProjectRoadmap. */}
       {!isLast && (
         <div
           ref={mobileTraceRef}

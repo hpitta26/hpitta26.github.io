@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { makeMotes, makeStars } from '../lib/atmosphere';
+import { makeStars } from '../lib/atmosphere';
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -23,11 +23,7 @@ const Hero = () => {
     };
   }, []);
 
-  const stars = useMemo(() => makeStars(95, 20260819), []);
-  // Dust in the earth just under the surface, so the ground below the
-  // horizon is inhabited rather than a flat slab. Only tall enough to see
-  // on narrow screens, where this strip actually has height.
-  const groundMotes = useMemo(() => makeMotes(16, 5150), []);
+  const stars = useMemo(() => makeStars(80, 20260819), []);
 
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -121,20 +117,10 @@ const Hero = () => {
                 top: star.top,
                 width: star.size,
                 height: star.size,
-                '--star-min': star.min,
-                '--star-max': star.max,
-                opacity: star.min,
-                boxShadow: star.bloom ? '0 0 6px rgba(234,228,255,0.75)' : 'none',
-                animation: `twinkle ${star.duration} ease-in-out ${star.delay} infinite`
+                opacity: star.opacity
               }}
             />
           ))}
-
-          {/* One wishing star, on a long cycle. Rare enough to feel like luck. */}
-          <span
-            className="meteor"
-            style={{ top: '7%', left: '10%', animation: 'meteorFall 38s linear 9s infinite' }}
-          />
         </div>
 
 
@@ -252,9 +238,13 @@ const Hero = () => {
       {/* Film grain overlay */}
       <div className="hero-grain absolute inset-0 z-10 pointer-events-none" />
 
-      {/* Hero content with Developer */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-screen px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="text-center max-w-4xl mx-auto mt-12">
+      {/* Hero content with Developer.
+          justify-between pins the workstation to the bottom of the viewport and
+          lets the leftover height fall as sky above it. Centring the stack and
+          padding underneath instead left a tall band of flat ground below the
+          horizon on narrow screens. */}
+      <div className="relative z-20 flex h-screen flex-col items-center justify-between px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
+        <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in-up">
             <h1
               className="font-display font-bold text-white mb-5"
@@ -267,16 +257,13 @@ const Hero = () => {
             >
               Henrique Pitta
             </h1>
-            <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6">
-              <h2 className="flex items-center gap-2.5 rounded-full border border-ember/25 bg-white/5 px-4 py-2 text-sm font-medium text-star/85 backdrop-blur-md">
-                <span
-                  className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-ember"
-                  style={{ boxShadow: '0 0 9px rgba(243,215,163,0.95)' }}
-                  aria-hidden="true"
-                />
-                CS &amp; Math @
+            {/* Standing meta, deliberately quiet: it sits between the name and
+                the line that actually says something, so it should read third. */}
+            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 mb-7">
+              <h2 className="rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-star/70">
+                CS &amp; Math @{' '}
                 <a
-                  className="text-white underline decoration-ember/50 decoration-dotted underline-offset-4 transition-all duration-200 hover:decoration-ember hover:drop-shadow-[0_0_10px_rgba(243,215,163,0.9)]"
+                  className="text-star underline decoration-white/25 underline-offset-[5px] transition-colors duration-200 hover:decoration-ember"
                   href="https://www.fiu.edu/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -284,15 +271,10 @@ const Hero = () => {
                   FIU
                 </a>
               </h2>
-              <h2 className="flex items-center gap-2.5 rounded-full border border-ember/25 bg-white/5 px-4 py-2 text-sm font-medium text-star/85 backdrop-blur-md">
-                <span
-                  className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-lilac"
-                  style={{ boxShadow: '0 0 9px rgba(176,152,208,0.95)' }}
-                  aria-hidden="true"
-                />
-                Dir. of Tech @
+              <h2 className="rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-star/70">
+                Dir. of Tech @{' '}
                 <a
-                  className="text-white underline decoration-lilac/60 decoration-dotted underline-offset-4 transition-all duration-200 hover:decoration-ember hover:drop-shadow-[0_0_10px_rgba(243,215,163,0.9)]"
+                  className="text-star underline decoration-white/25 underline-offset-[5px] transition-colors duration-200 hover:decoration-ember"
                   href="https://www.weareinit.org/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -310,8 +292,12 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Developer and Ground - Grouped with hero content */}
-        <div className="relative pointer-events-none w-[180vw] sm:w-screen sm:scale-130 lg:scale-105">
+        {/* Developer and Ground. The -2px closes a subpixel seam between the
+            artwork's ground and the section below it, which share a colour. */}
+        <div
+          className="relative pointer-events-none w-[180vw] sm:w-screen sm:scale-130 lg:scale-105"
+          style={{ marginBottom: '-2px' }}
+        >
           <img
             src="/assets/coder-ground.svg"
             alt="Developer at workstation with ground transition"
@@ -323,30 +309,6 @@ const Hero = () => {
             <span className="steam s2" />
             <span className="steam s3" />
           </div>
-        </div>
-
-        {/* Fill remaining space with background - cover any pixel gaps */}
-        <div
-          className="relative flex-1 w-screen overflow-hidden bg-night"
-          style={{ marginBottom: '-2px', minHeight: '2px' }}
-        >
-          {groundMotes.map((mote) => (
-            <span
-              key={mote.id}
-              className="mote"
-              style={{
-                left: mote.left,
-                top: mote.top,
-                width: mote.size,
-                height: mote.size,
-                '--mote-peak': mote.peak,
-                '--mote-x': mote.drift,
-                opacity: 0,
-                animation: `moteDrift ${mote.duration} linear ${mote.delay} infinite`
-              }}
-              aria-hidden="true"
-            />
-          ))}
         </div>
       </div>
     </section>

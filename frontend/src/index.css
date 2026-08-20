@@ -2,15 +2,13 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Sky at the top, earth everywhere below.
+   Sky at the top, earth everywhere below. The coder sits on the surface at
+   dusk; everything under the horizon is ground, so the projects are strung
+   underground on a vein of light rather than charted across a sky.
 
-   The coder sits on the surface at dusk; the whole page beneath the horizon is
-   ground. So the projects are not a chart of the sky — they are underground,
-   strung together by a vein of light running down through the earth like a
-   root. The light that travels it is lantern-warm, not electric.
-
-   Type is deliberately the project's original pairing (Space Grotesk / Inter);
-   the mystical register is carried by colour, light and atmosphere instead.
+   One rule keeps this from turning into a light show: the vein and its
+   endpoints are the only things that glow, because they are the only things
+   that are light. Borders, chips and buttons stay matte.
    --------------------------------------------------------------------------- */
 
 @theme {
@@ -18,16 +16,15 @@
   --color-night-deep: #0b0418;
   --color-night: #1a0836;
 
-  /* Structure — cool, quiet */
+  /* Structure — cool and matte */
   --color-vein: #7c5cc4;
   --color-lilac: #b098d0;
   --color-grape: #7147ab;
   --color-star: #ece6f7;
 
-  /* Light — warm. Anything that glows, glows like a lantern. */
+  /* Light — warm, and used sparingly */
   --color-ember: #f3d7a3;
   --color-gilt: #c9a36a;
-  --color-blush: #f2ccd7;
 
   --font-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -52,6 +49,11 @@
   h3 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+  }
+
+  /* Lets the browser avoid orphans and ragged rivers in the descriptions. */
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
@@ -132,50 +134,20 @@
     will-change: transform;
   }
 
-  /* ---- Stars (sky only — never below the horizon) ----------------------- */
+  /* ---- Stars ----------------------------------------------------------
+     Sky only, and static. Ninety-odd elements animating their opacity was
+     a lot of motion to buy a twinkle nobody asked for; a fixed field with
+     varied brightness reads calmer and costs nothing. */
 
   .star-dot {
     position: absolute;
     border-radius: 9999px;
     background: #fdf8ec;
-    will-change: opacity;
   }
 
-  @keyframes twinkle {
-    0%, 100% { opacity: var(--star-min, 0.25); }
-    50%      { opacity: var(--star-max, 0.9); }
-  }
-
-  /* One wishing star, rarely. */
-  .meteor {
-    position: absolute;
-    width: 13vw;
-    max-width: 200px;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      rgba(253, 248, 236, 0) 0%,
-      rgba(253, 248, 236, 0.7) 70%,
-      #fff 100%
-    );
-    border-radius: 9999px;
-    opacity: 0;
-    transform-origin: right center;
-    filter: drop-shadow(0 0 6px rgba(243, 215, 163, 0.85));
-    will-change: transform, opacity;
-  }
-
-  @keyframes meteorFall {
-    0%       { opacity: 0; transform: rotate(18deg) translate3d(-14vw, -10vh, 0) scaleX(0.3); }
-    2%       { opacity: 0.9; }
-    11%      { opacity: 0.9; transform: rotate(18deg) translate3d(40vw, 22vh, 0) scaleX(1); }
-    16%      { opacity: 0; transform: rotate(18deg) translate3d(52vw, 29vh, 0) scaleX(0.6); }
-    100%     { opacity: 0; transform: rotate(18deg) translate3d(52vw, 29vh, 0) scaleX(0.6); }
-  }
-
-  /* ---- Motes (earth only) ---------------------------------------------
-     Underground there are no stars. There is dust turning slowly in the
-     dark, catching the light of the vein as it passes. */
+  /* ---- Motes ----------------------------------------------------------
+     The one piece of ambient motion below the horizon, so the earth is not
+     a dead slab. Slow, sparse, and warm. */
 
   .mote {
     position: absolute;
@@ -293,9 +265,9 @@
   }
 
   /* ---- The vein -------------------------------------------------------
-     Signature element: a seam of light running down through the earth from
-     one project to the next. Paths carry pathLength="1" so both the draw-on
-     and the travelling light work in normalised units. */
+     The one signature, and the page's only light. Paths carry pathLength="1"
+     so the draw-on and the travelling light both work in normalised units
+     regardless of the route's real length. */
 
   .trace-line {
     stroke-dasharray: 1;
@@ -329,38 +301,18 @@
      without inheriting preserveAspectRatio="none" horizontal stretch. */
   .trace-node {
     position: absolute;
-    width: 7px;
-    height: 7px;
-    margin-left: -3.5px;
+    width: 6px;
+    height: 6px;
+    margin-left: -3px;
     border-radius: 9999px;
     background: var(--color-ember);
-    box-shadow: 0 0 12px rgba(243, 215, 163, 0.95), 0 0 26px rgba(201, 163, 106, 0.55);
+    box-shadow: 0 0 10px rgba(243, 215, 163, 0.9), 0 0 22px rgba(201, 163, 106, 0.45);
     opacity: 0;
-    transform: scale(0.4);
-    transition: opacity 0.9s ease-out 0.7s, transform 0.9s ease-out 0.7s;
+    transition: opacity 0.9s ease-out 0.7s;
   }
 
   .trace-in .trace-node {
     opacity: 1;
-    transform: scale(1);
-    animation: nodeBreathe 4.6s ease-in-out 1.6s infinite;
-  }
-
-  @keyframes nodeBreathe {
-    0%, 100% { transform: scale(1);   opacity: 0.75; }
-    50%      { transform: scale(1.45); opacity: 1; }
-  }
-
-  /* ---- Footer sweep ---------------------------------------------------- */
-
-  @keyframes sweepUp {
-    0%   { transform: translateY(120%); opacity: 0; }
-    35%  { opacity: 0.9; }
-    100% { transform: translateY(-120%); opacity: 0; }
-  }
-
-  .sweep-up {
-    animation: sweepUp 1.2s ease-out;
   }
 
   /* ---- Motion preferences ---------------------------------------------- */
@@ -370,14 +322,10 @@
 
     .aurora-blob,
     .hero-cloud,
-    .star-dot,
-    .meteor,
-    .mote,
-    .sweep-up {
+    .mote {
       animation: none !important;
     }
 
-    .meteor { opacity: 0 !important; }
     .mote { opacity: 0.28 !important; }
 
     .coffee-steam .steam {
@@ -404,12 +352,9 @@
 
     .trace-pulse { display: none; }
 
-    .trace-in .trace-node,
     .trace-node {
       opacity: 1;
-      transform: scale(1);
       transition: none;
-      animation: none !important;
     }
   }
 }

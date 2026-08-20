@@ -154,8 +154,9 @@ const ProjectRoadmap = () => {
   };
 
   // This section is underground — below the horizon the coder sits on — so
-  // there are no stars here. Just dust turning slowly in the dark.
-  const motes = useMemo(() => makeMotes(46, 74123), []);
+  // there are no stars here. Just dust turning slowly in the dark, and few
+  // enough of them to stay atmosphere rather than a snow globe.
+  const motes = useMemo(() => makeMotes(20, 74123), []);
 
   return (
     <section
@@ -204,14 +205,14 @@ const ProjectRoadmap = () => {
       <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
         {/* Section selector */}
         <div className="flex justify-center mb-12">
-          <div className="relative w-full max-w-[340px] rounded-xl border border-ember/20 bg-night/40 p-1.5 backdrop-blur-md">
+          <div className="relative w-full max-w-[340px] rounded-lg border border-white/12 bg-white/[0.03] p-1.5">
             {/* Sliding keycap */}
             <div
-              className="pointer-events-none absolute top-1.5 bottom-1.5 rounded-lg border border-ember/50 bg-[#f7efe0] transition-[left] duration-300 ease-out"
+              className="pointer-events-none absolute top-1.5 bottom-1.5 rounded-lg border border-ember/40 bg-[#f7efe0] transition-[left] duration-300 ease-out"
               style={{
                 width: 'calc((100% - 12px) / 3)',
                 left: `calc(6px + ${SECTIONS.indexOf(activeSection)} * (100% - 12px) / 3)`,
-                boxShadow: '0 0 22px rgba(243,215,163,0.35), 0 2px 10px rgba(11,4,24,0.65)'
+                boxShadow: '0 2px 10px rgba(11,4,24,0.6)'
               }}
               aria-hidden="true"
             >
@@ -239,7 +240,7 @@ const ProjectRoadmap = () => {
 
         <div className="text-center mb-28">
           <h2
-            className="font-display font-bold text-white"
+            className="font-display font-bold text-white mb-4"
             style={{
               fontSize: 'clamp(2.1rem, 6vw, 3.4rem)',
               letterSpacing: '-0.03em',
@@ -248,21 +249,14 @@ const ProjectRoadmap = () => {
           >
             {getSectionTitle()}
           </h2>
-          {/* Hairline rule: the chart's baseline under the title */}
-          <div
-            className="mx-auto my-7 h-px w-32"
-            style={{
-              background:
-                'linear-gradient(90deg, rgba(243,215,163,0) 0%, rgba(243,215,163,0.8) 50%, rgba(243,215,163,0) 100%)'
-            }}
-            aria-hidden="true"
-          />
-          <p className="mx-auto max-w-xl text-xl font-light leading-relaxed text-star/70">
+          <p className="mx-auto max-w-xl text-lg font-light leading-relaxed text-star/60">
             Below are some projects I'm proud of working on...
           </p>
         </div>
 
         <div className="relative">
+          {/* mb-36 (144px) is load-bearing: the stacked-layout connector in
+              ProjectNode spans exactly this gap. Change both together. */}
           {getCurrentData().map((item, index) => (
             <div key={`${activeSection}-${item.id}`} className="relative mb-36 last:mb-0">
               <ProjectNode

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MdEmail } from "react-icons/md";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 import { HiOutlineArrowUp } from "react-icons/hi";
@@ -15,12 +15,7 @@ const LINKS = [
 ];
 
 const Footer = () => {
-  // Retriggers the light sweep on the button each press, closing the
-  // traveling-light motif: the page ends by sending you back to the top.
-  const [sweep, setSweep] = useState(0);
-
   const scrollToTop = () => {
-    setSweep((n) => n + 1);
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
@@ -47,21 +42,19 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="mb-16 flex justify-center gap-6 sm:gap-8">
-          {LINKS.map(({ href, title, Icon, external }) => (
+          {/* Referenced as link.Icon rather than destructured: this project's
+              ESLint has no React plugin, so a destructured capitalised
+              component read only from JSX is reported as unused. */}
+          {LINKS.map((link) => (
             <a
-              key={title}
-              href={href}
-              title={title}
-              aria-label={title}
-              {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-              className="group relative grid h-14 w-14 place-items-center rounded-xl border border-ember/30 bg-night/60 text-star/80 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-ember/55 hover:text-ember"
+              key={link.title}
+              href={link.href}
+              title={link.title}
+              aria-label={link.title}
+              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className="grid h-14 w-14 place-items-center rounded-lg border border-white/12 bg-white/[0.03] text-star/75 transition-colors duration-300 hover:border-ember/45 hover:text-ember"
             >
-              <span
-                className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{ boxShadow: '0 0 26px rgba(243,215,163,0.28)' }}
-                aria-hidden="true"
-              />
-              <Icon className="relative h-7 w-7" />
+              <link.Icon className="h-6 w-6" />
             </a>
           ))}
         </div>
@@ -70,21 +63,12 @@ const Footer = () => {
         <div className="flex justify-center">
           <button
             onClick={scrollToTop}
-            className="group relative cursor-pointer overflow-hidden rounded-lg border border-ember/50 bg-[#f7efe0] text-grape transition-all duration-300 hover:-translate-y-0.5"
-            style={{ boxShadow: '0 0 24px rgba(243,215,163,0.3), 0 4px 14px rgba(11,4,24,0.65)' }}
+            className="group cursor-pointer rounded-lg border border-ember/40 bg-[#f7efe0] text-grape transition-transform duration-300 hover:-translate-y-0.5"
+            style={{ boxShadow: '0 4px 14px rgba(11,4,24,0.6)' }}
           >
-            {/* Light sweeping upward through the button on press */}
-            <span
-              key={sweep}
-              className={`pointer-events-none absolute inset-x-0 h-full ${sweep ? 'sweep-up' : ''}`}
-              style={{
-                background:
-                  'linear-gradient(0deg, rgba(243,215,163,0) 0%, rgba(255,240,205,0.9) 50%, rgba(243,215,163,0) 100%)',
-                opacity: 0
-              }}
-              aria-hidden="true"
-            />
-            <div className="relative flex items-center gap-2.5 rounded-[7px] border-b-[3px] border-b-gilt/70 px-6 py-3.5">
+            {/* Inner radius is one pixel under the outer so the nested corners
+                stay concentric with the 3px keycap edge. */}
+            <div className="flex items-center gap-2.5 rounded-[7px] border-b-[3px] border-b-gilt/70 px-6 py-3.5">
               <HiOutlineArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
               <span className="text-sm font-semibold">Back to Top</span>
             </div>
