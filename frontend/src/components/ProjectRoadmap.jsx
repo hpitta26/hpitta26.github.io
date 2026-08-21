@@ -163,8 +163,9 @@ const ProjectRoadmap = () => {
       id="projects"
       className="relative min-h-screen overflow-hidden py-24"
       style={{
-        // Descending through earth: the ground colour the hero ends on, going
-        // deeper and slightly warmer with depth, like soil rather than sky.
+        // Descending through earth. Starts on the exact ground colour the hero
+        // ends on, then just gets darker; the blue drifts out of the purple so
+        // it reads as soil rather than more sky.
         background:
           'linear-gradient(180deg, #1a0836 0%, #170a2c 14%, #120720 42%, #0d0518 72%, #0b0418 100%)'
       }}
@@ -189,18 +190,10 @@ const ProjectRoadmap = () => {
         ))}
       </div>
 
-      {/* A warm seam of light deep down, as if something is burning below.
-          Held clear of the section's bottom edge and faded to transparent
-          inside its own box — anchored to the edge it got clipped, which read
-          as a hard horizontal seam where the footer starts. */}
-      <div
-        className="absolute inset-x-0 bottom-[7vh] h-[42vh] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(72% 100% at 50% 62%, rgba(201,163,106,0.15), rgba(124,92,196,0.08) 48%, rgba(11,4,24,0) 76%)'
-        }}
-        aria-hidden="true"
-      />
+      {/* No ambient light source down here on purpose. A warm glow used to
+          pool at the bottom of this section, which read as open air rather
+          than earth — deep ground is simply dark. The vein and the dust it
+          catches are the only light below the horizon. */}
 
       <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
         {/* Section selector */}

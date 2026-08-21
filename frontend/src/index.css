@@ -60,11 +60,6 @@
     background: color-mix(in srgb, var(--color-vein) 55%, transparent);
     color: #fff;
   }
-
-  * {
-    scrollbar-color: var(--color-grape) var(--color-night-deep);
-    scrollbar-width: thin;
-  }
 }
 
 /* One consistent focus ring everywhere, since the page is mostly dark glass.
