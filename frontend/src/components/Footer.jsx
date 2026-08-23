@@ -3,6 +3,16 @@ import { MdEmail } from "react-icons/md";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 import { HiOutlineArrowUp } from "react-icons/hi";
 
+const LINKS = [
+  { href: 'mailto:business@henriquepitta.com', title: 'Email', Icon: MdEmail, external: false },
+  { href: 'https://github.com/hpitta26', title: 'GitHub', Icon: IoLogoGithub, external: true },
+  {
+    href: 'https://www.linkedin.com/in/henrique-pitta-19594b249/',
+    title: 'LinkedIn',
+    Icon: IoLogoLinkedin,
+    external: true
+  }
+];
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -13,54 +23,44 @@ const Footer = () => {
   };
 
   return (
-    <footer id="contact" className="relative bg-[#1a0836] text-white py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Separator */}
-        <div className="border-t border-[#46375d] border-dashed mb-14"></div>
-        
+    <footer id="contact" className="relative overflow-hidden bg-night-deep py-20 text-star">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16" aria-hidden="true">
+          <div
+            className="h-px w-full"
+            style={{
+              background:
+                'linear-gradient(90deg, rgba(124,92,196,0) 0%, rgba(201,163,106,0.5) 50%, rgba(124,92,196,0) 100%)'
+            }}
+          />
+        </div>
+
         {/* Social Icons */}
-        <div className="flex justify-center space-x-12 mb-14">
-          {/* Email */}
-          <a 
-            href="mailto:business@henriquepitta.com" 
-            className="text-gray-400 hover:text-white transition-colors duration-200 transform"
-            title="Email"
-          >
-            <MdEmail className="w-9 h-9" />
-          </a>
-
-          {/* GitHub */}
-          <a 
-            href="https://github.com/hpitta26" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors duration-200 transform"
-            title="GitHub"
-          >
-            <IoLogoGithub className="w-9 h-9" />
-          </a>
-
-          {/* LinkedIn */}
-          <a 
-            href="https://www.linkedin.com/in/henrique-pitta-19594b249/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors duration-200 transform"
-            title="LinkedIn"
-          >
-            <IoLogoLinkedin className="w-9 h-9" />
-          </a>
+        <div className="mb-16 flex justify-center gap-6 sm:gap-8">
+          {LINKS.map((link) => (
+            <a
+              key={link.title}
+              href={link.href}
+              title={link.title}
+              aria-label={link.title}
+              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className="grid h-14 w-14 place-items-center rounded-lg border border-white/12 bg-white/[0.03] text-star/75 transition-colors duration-300 hover:border-ember/45 hover:text-ember"
+            >
+              <link.Icon className="h-6 w-6" />
+            </a>
+          ))}
         </div>
 
         {/* Back to Top Button */}
         <div className="flex justify-center">
-            <button 
-              onClick={scrollToTop}
-              className="bg-white text-[#7147ab] font-semibold rounded-lg border border-[#b098d0] transition-all duration-300 transform cursor-pointer"
-            >
-            <div className='flex items-center space-x-2 px-6 py-3 border-b-3 border-b-[#f2ccd7] rounded-[7px]'>
-              <HiOutlineArrowUp className="w-6 h-6" />
-              <span>Back to Top</span>
+          <button
+            onClick={scrollToTop}
+            className="group cursor-pointer rounded-lg border border-ember/40 bg-[#f7efe0] text-grape transition-transform duration-300 hover:-translate-y-0.5"
+            style={{ boxShadow: '0 4px 14px rgba(11,4,24,0.6)' }}
+          >
+            <div className="flex items-center gap-2.5 rounded-[7px] border-b-[3px] border-b-gilt/70 px-6 py-3.5">
+              <HiOutlineArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+              <span className="text-sm font-semibold">Back to Top</span>
             </div>
           </button>
         </div>

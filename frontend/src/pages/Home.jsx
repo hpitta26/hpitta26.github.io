@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 function Home() {
   return (
-    <div className="min-h-screen bg-purple-600">
+    <div className="min-h-screen bg-night-deep">
       {/* <Navbar /> */}
       <Hero />
       <ProjectRoadmap />

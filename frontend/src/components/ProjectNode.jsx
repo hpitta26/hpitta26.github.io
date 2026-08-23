@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
+import useInView from '../hooks/useInView';
+
+const LEFT_ANCHOR = '23.5%';
+const RIGHT_ANCHOR = '76.5%';
 
 const ProjectNode = ({ project, isLast, nextProject }) => {
   const isLeft = project.position === 'left';
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [copyRef, copyInView] = useInView({ threshold: 0.25 });
+  const [plateRef, plateInView] = useInView({ threshold: 0.25 }); 
+  const [focusRef, plateFocused] = useInView({ threshold: 0.55, rootMargin: '0px', once: false });
+  const [traceRef, traceInView] = useInView({ threshold: 0.35, rootMargin: '0px' });
+  const [mobileTraceRef, mobileTraceInView] = useInView({ threshold: 0.05, rootMargin: '0px' });
 
   const nextImage = () => {
     if (project.images && project.images.length > 1 && currentImageIndex < project.images.length - 1) {
@@ -18,28 +27,50 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
 
   const isFirstImage = currentImageIndex === 0;
   const isLastImage = currentImageIndex === project.images?.length - 1;
-  
+
+  const arrowBase =
+    'absolute top-1/2 z-10 -translate-y-1/2 rounded-full border p-1.5 backdrop-blur-md transition-all duration-300 sm:p-2';
+
   return (
     <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
-      {/* Project Description - Below node on small screens */}
       <div className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} order-2 z-10 flex justify-center`}>
-        <div className={`${isLeft ? 'lg:text-right' : 'lg:text-left'} text-center w-full max-w-[600px] min-w-[320px] px-4 sm:px-8 lg:px-0`}>
-          <h2 className="text-4xl font-bold text-white mb-2">
+        <div
+          ref={copyRef}
+          className={`reveal ${copyInView ? 'reveal-in' : ''} ${
+            isLeft ? 'lg:text-right' : 'lg:text-left'
+          } text-center w-full max-w-[600px] min-w-[320px] px-4 sm:px-8 lg:px-0`}
+          style={{ transitionDelay: '80ms' }}
+        >
+          <h2
+            className="font-display font-bold text-white mb-3"
+            style={{
+              fontSize: 'clamp(1.9rem, 4.4vw, 2.5rem)',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05
+            }}
+          >
             {project.title}
           </h2>
+
           {project.role && (
-            <p className="text-purple-300 text-sm font-medium mb-4">
+            <p className="mb-5 text-sm font-medium leading-snug text-ember/90">
               {project.role}
             </p>
           )}
-          <p className="text-gray-300 text-lg leading-relaxed mb-6">
+
+          <p
+            className={`mb-6 max-w-[58ch] text-lg font-light leading-relaxed text-star/70 ${
+              isLeft ? 'lg:ml-auto' : ''
+            } mx-auto lg:mx-0`}
+          >
             {project.description}
           </p>
-          <div className={`flex flex-wrap gap-1 ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
+
+          <div className={`flex flex-wrap gap-1.5 ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
             {project.tags.map((tag, index) => (
-              <span 
+              <span
                 key={index}
-                className="px-3 py-1 bg-purple-600/30 text-purple-200 rounded-full text-sm font-medium border border-purple-500/30"
+                className="rounded-full border border-lilac/30 bg-lilac/8 px-3 py-1 text-sm font-medium text-lilac/90 transition-colors duration-300 hover:border-ember/60 hover:text-ember"
               >
                 {tag}
               </span>
@@ -48,158 +79,218 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         </div>
       </div>
 
-      {/* Larger Project Node */}
-      <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 flex justify-center relative`}>
-        <div className="relative">
-          {/* Bigger Node card with outer frame - responsive width with maintained aspect ratio */}
-          <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{aspectRatio: '600/380'}}>
-            {/* Outer Neumorphic Frame - blurred backing melts the node edges into the surface */}
-            <div className="w-full h-full rounded-2xl p-4.5 relative">
-              {/* Blurred backing: fill + raised shadows, blurred so the node edges look soft/neumorphic */}
+      <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 z-10 flex justify-center relative`}>
+        <div
+          ref={plateRef}
+          className={`reveal ${plateInView ? 'reveal-in' : ''} relative`}
+        >
+          <div ref={focusRef} className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{ aspectRatio: '600/380' }}>
+            <div className="group w-full h-full rounded-2xl p-4.5 relative">
               <div
-                className="absolute inset-0 rounded-3xl"
+                className="absolute inset-0 rounded-2xl"
                 style={{
                   background: '#1a0836',
                   boxShadow:
-                    '8px 8px 12px rgba(0,0,0,0.8), -8px -8px 12px rgba(255,255,255,0.1)',
+                    '10px 12px 20px rgba(0,0,0,0.85), -6px -8px 16px rgba(243,215,163,0.07)',
                   filter: 'blur(2px)'
                 }}
               />
-              {/* Inner Glass Card */}
-                <div className="w-full h-full rounded-lg overflow-hidden relative z-[1] group">
-                  <img 
-                    src={`/assets/${project.images[currentImageIndex]}`}
-                    alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover transition-all duration-300"
-                  />
 
-                  {/* Subtle frosted dulling layer so bright screenshots sink into the theme */}
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background:
-                        'linear-gradient(5deg, rgba(26,8,54,0.20), rgba(26,8,54,0.20))',
-                      backdropFilter: 'saturate(0.95) blur(0.1px)',
-                      WebkitBackdropFilter: 'saturate(0.9) blur(0.1px)',
-                      zIndex: 1
-                    }}
-                  />
-                  
-                  {/* Navigation arrows - only show if multiple images */}
-                  {project.images.length > 1 && (
-                    <>
-                      {/* Previous arrow */}
-                      <button
-                        onClick={prevImage}
-                        disabled={isFirstImage}
-                        className={`absolute left-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 opacity-100 transition-all duration-300 z-10 ${
-                          isFirstImage 
-                            ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed' 
-                            : 'bg-black/50 hover:bg-black/70 text-white cursor-pointer'
-                        }`}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                      </button>
-                      
-                      {/* Next arrow */}
-                      <button
-                        onClick={nextImage}
-                        disabled={isLastImage}
-                        className={`absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 opacity-100 transition-all duration-300 z-10 ${
-                          isLastImage 
-                            ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed' 
-                            : 'bg-black/50 hover:bg-black/70 text-white cursor-pointer'
-                        }`}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                      
-                      {/* Image indicators */}
-                      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 opacity-100 transition-all duration-300">
-                        {project.images.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setCurrentImageIndex(index)}
-                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                              index === currentImageIndex ? 'bg-white' : 'bg-white/50 hover:bg-white/70'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </div>
+              <div
+                className="absolute inset-0 rounded-2xl pointer-events-none border border-ember/20 transition-colors duration-500 group-hover:border-ember/45"
+                aria-hidden="true"
+              />
+
+              <div className="w-full h-full rounded-lg overflow-hidden relative z-[1]">
+                <img
+                  src={`/assets/${project.images[currentImageIndex]}`}
+                  alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                  className="w-full h-full object-cover"
+                />
+
+                <div
+                  className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ${
+                    plateFocused ? 'opacity-25' : 'opacity-100'
+                  }`}
+                  style={{
+                    background:
+                      'linear-gradient(200deg, rgba(26,8,54,0.42) 0%, rgba(26,8,54,0.26) 45%, rgba(13,3,32,0.5) 100%)',
+                    backdropFilter: 'saturate(0.82)',
+                    WebkitBackdropFilter: 'saturate(0.82)',
+                    zIndex: 1
+                  }}
+                  aria-hidden="true"
+                />
+
+                <div
+                  className="absolute inset-0 rounded-lg pointer-events-none"
+                  style={{ boxShadow: 'inset 0 0 22px rgba(13,3,32,0.7)', zIndex: 2 }}
+                  aria-hidden="true"
+                />
+
+                {project.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      disabled={isFirstImage}
+                      aria-label="Previous screenshot"
+                      className={`${arrowBase} left-2 sm:left-2.5 ${
+                        isFirstImage
+                          ? 'cursor-not-allowed border-white/5 bg-night-deep/40 text-white/20'
+                          : 'cursor-pointer border-lilac/35 bg-night-deep/55 text-star/80 hover:border-ember/60 hover:bg-night-deep/80 hover:text-white'
+                      }`}
+                    >
+                      <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    <button
+                      onClick={nextImage}
+                      disabled={isLastImage}
+                      aria-label="Next screenshot"
+                      className={`${arrowBase} right-2 sm:right-2.5 ${
+                        isLastImage
+                          ? 'cursor-not-allowed border-white/5 bg-night-deep/40 text-white/20'
+                          : 'cursor-pointer border-lilac/35 bg-night-deep/55 text-star/80 hover:border-ember/60 hover:bg-night-deep/80 hover:text-white'
+                      }`}
+                    >
+                      <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+
+                    <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/10 bg-night-deep/55 px-2.5 py-1.5 backdrop-blur-md">
+                      {project.images.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          aria-label={`Screenshot ${index + 1}`}
+                          aria-current={index === currentImageIndex}
+                          className={`h-[3px] cursor-pointer rounded-full transition-all duration-300 ${
+                            index === currentImageIndex
+                              ? 'w-5 bg-ember'
+                              : 'w-2 bg-white/30 hover:bg-white/60'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Connection SVG to next node - only show on large screens */}
       {!isLast && nextProject && (
-        <div className="absolute pointer-events-none overflow-visible w-full hidden lg:block" style={{
-          bottom: '-145px',
-          left: '0',
-          zIndex: 5,
-          height: '160px'
-        }}>
-          <svg 
-            className="absolute overflow-visible w-full" 
-            height="160"
-            viewBox="0 0 800 160"
-            preserveAspectRatio="none"
-          >
-            <path
-              d={
-                // Current node is left, next is right
-                isLeft && nextProject.position === 'right' 
-                  ? "M188 0L188 20L188,60Q188,80 208,80L592,80Q612,80 612,100L612 140L612 160"
-                // Current node is right, next is left  
+        <div
+          ref={traceRef}
+          className={`absolute pointer-events-none overflow-visible w-full hidden lg:block ${
+            traceInView ? 'trace-in' : ''
+          }`}
+          style={{
+            bottom: '-145px',
+            left: '0',
+            zIndex: 0,
+            height: '160px'
+          }}
+          aria-hidden="true"
+        >
+          {(() => {
+            const path =
+              // Current node is left, next is right
+              isLeft && nextProject.position === 'right'
+                ? 'M188 0L188 20L188,60Q188,80 208,80L592,80Q612,80 612,100L612 140L612 160'
+                // Current node is right, next is left
                 : !isLeft && nextProject.position === 'left'
-                  ? "M612 0L612 20L612,60Q612,80 592,80L208,80Q188,80 188,100L188 140L188 160"
+                ? 'M612 0L612 20L612,60Q612,80 592,80L208,80Q188,80 188,100L188 140L188 160'
                 // Same side connections (both left-left and right-right) - simple straight down
-                  : isLeft 
-                    ? "M188 0L188 160"
-                    : "M612 0L612 160"
-              }
-              fill="none"
-              stroke="#8b5cf6"
-              strokeWidth="1.5"
-              className=""
-              style={{
-                filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
-              }}
-            />
-          </svg>
+                : isLeft
+                ? 'M188 0L188 160'
+                : 'M612 0L612 160';
+
+            const startAnchor = path.startsWith('M188') ? LEFT_ANCHOR : RIGHT_ANCHOR;
+            const endAnchor =
+              isLeft === (nextProject.position === 'left') ? startAnchor
+                : startAnchor === LEFT_ANCHOR ? RIGHT_ANCHOR : LEFT_ANCHOR;
+
+            return (
+              <>
+                <svg
+                  className="absolute w-full"
+                  height="160"
+                  viewBox="0 0 800 160"
+                  preserveAspectRatio="none"
+                  style={{
+                    clipPath: 'inset(15px 0 1px 0)'
+                  }}
+                >
+                  <path
+                    d={path}
+                    pathLength="1"
+                    fill="none"
+                    stroke="#7c5cc4"
+                    strokeOpacity="0.22"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    className="trace-line"
+                    d={path}
+                    pathLength="1"
+                    fill="none"
+                    stroke="#7c5cc4"
+                    strokeWidth="1.5"
+                    style={{
+                      filter:
+                        'drop-shadow(0 0 10px rgba(124, 92, 196, 0.75)) drop-shadow(0 0 3px rgba(236, 230, 247, 0.25))'
+                    }}
+                  />
+                </svg>
+
+                <div
+                  className="absolute overflow-hidden"
+                  style={{ left: startAnchor, top: '15px', width: '56px', height: '31px', marginLeft: '-28px' }}
+                >
+                  <span className="trace-node" style={{ left: '28px', top: '-3px' }} />
+                </div>
+                <div
+                  className="absolute overflow-hidden"
+                  style={{ left: endAnchor, bottom: '1px', width: '56px', height: '31px', marginLeft: '-28px' }}
+                >
+                  <span className="trace-node" style={{ left: '28px', bottom: '-3px' }} />
+                </div>
+              </>
+            );
+          })()}
         </div>
       )}
-      
-      {/* Simple vertical connection line for smaller screens */}
+
       {!isLast && (
-        <div className="absolute pointer-events-none w-full flex justify-center lg:hidden" style={{
-          bottom: '-400px',
-          left: '0',
-          zIndex: 0,
-          height: '800px'
-        }}>
-          <svg 
-            className="w-4 h-full" 
-            viewBox="0 0 4 800"
-            preserveAspectRatio="none"
-          >
+        <div
+          ref={mobileTraceRef}
+          className={`absolute left-0 flex w-full justify-center pointer-events-none lg:hidden ${
+            mobileTraceInView ? 'trace-in' : ''
+          }`}
+          style={{ bottom: '-144px', zIndex: 0, height: '144px' }}
+          aria-hidden="true"
+        >
+          <span className="trace-node" style={{ left: '50%', top: '3px' }} />
+          <svg className="h-full w-1" viewBox="0 0 2 144" preserveAspectRatio="none">
+            <path d="M1 0L1 144" pathLength="1" fill="none" stroke="#7c5cc4" strokeOpacity="0.24" strokeWidth="1.5" />
             <path
-              d="M2 0L2 800"
+              className="trace-line"
+              d="M1 0L1 144"
+              pathLength="1"
               fill="none"
-              stroke="#8b5cf6"
-              strokeWidth="0.4"
+              stroke="#7c5cc4"
+              strokeWidth="1.5"
               style={{
-                filter: 'drop-shadow(0 0 12px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))'
+                filter: 'drop-shadow(0 0 10px rgba(124, 92, 196, 0.75)) drop-shadow(0 0 3px rgba(236, 230, 247, 0.25))'
               }}
             />
           </svg>
+          <span className="trace-node" style={{ left: '50%', bottom: '-3.5px' }} />
         </div>
       )}
     </div>

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import ProjectNode from './ProjectNode';
+import { makeMotes } from '../lib/atmosphere';
+
+const SECTIONS = ['solo', 'group', 'hackathon'];
 
 const ProjectRoadmap = () => {
-  // Initialize state from localStorage or default to 'solo'
   const [activeSection, setActiveSection] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('projectRoadmapSection') || 'solo';
@@ -10,7 +12,6 @@ const ProjectRoadmap = () => {
     return 'solo';
   });
 
-  // Save to localStorage whenever activeSection changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('projectRoadmapSection', activeSection);
@@ -132,7 +133,6 @@ const ProjectRoadmap = () => {
     }
   ];
 
-  // Get current data based on active section
   const getCurrentData = () => {
     switch(activeSection) {
       case 'group': return group;
@@ -141,7 +141,6 @@ const ProjectRoadmap = () => {
     }
   };
 
-  // Get section title
   const getSectionTitle = () => {
     switch(activeSection) {
       case 'group': return 'My Group Projects';
@@ -150,56 +149,90 @@ const ProjectRoadmap = () => {
     }
   };
 
+  const motes = useMemo(() => makeMotes(20, 74123), []);
+
   return (
-    <section id="projects" className="relative min-h-screen py-20 bg-[#1a0836]">
+    <section
+      id="projects"
+      className="relative min-h-screen overflow-hidden py-24"
+      style={{
+        background:
+          'linear-gradient(180deg, #1a0836 0%, #170a2c 14%, #120720 42%, #0d0518 72%, #0b0418 100%)'
+      }}
+    >
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        {motes.map((mote) => (
+          <span
+            key={mote.id}
+            className="mote"
+            style={{
+              left: mote.left,
+              top: mote.top,
+              width: mote.size,
+              height: mote.size,
+              '--mote-peak': mote.peak,
+              '--mote-x': mote.drift,
+              opacity: 0,
+              animation: `moteDrift ${mote.duration} linear ${mote.delay} infinite`
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
-          {/* Section Slider */}
-          <div className="flex justify-center mb-8">
-            <div className=" rounded-lg border border-[#b098d0] p-2 pr-3 relative">
-              {/* Animated sliding button (same as Back to Top button) */}
-              <div 
-                className="absolute top-1 bottom-1 bg-white text-[#7147ab] font-semibold rounded-lg border border-[#b098d0] transition-all duration-300 ease-out transform cursor-pointer"
-                style={{
-                  width: 'calc(33.333% - 4px)',
-                  left: activeSection === 'solo' ? '4px' : activeSection === 'group' ? 'calc(33.333% + 0px)' : 'calc(66.666% + 0px)'
-                }}
-              >
-                <div className="h-full border-b-3 border-b-[#f2ccd7] rounded-[7px]"></div>
-              </div>
-              
-              <div className="flex relative z-10">
-                {['solo', 'group', 'hackathon'].map((section) => (
-                  <button
-                    key={section}
-                    onClick={() => setActiveSection(section)}
-                    className={`px-4 py-3 rounded-[7px] text-sm font-semibold transition-all duration-300 capitalize transform cursor-pointer ${
-                      activeSection === section
-                        ? 'text-[#7147ab]'
-                        : 'text-white hover:text-gray-200'
-                    }`}
-                    style={{ width: '90px' }}
-                  >
-                    {section}
-                  </button>
-                ))}
-              </div>
+        <div className="flex justify-center mb-12">
+          <div className="relative w-full max-w-[340px] rounded-lg border border-white/12 bg-white/[0.03] p-1.5">
+            <div
+              className="pointer-events-none absolute top-1.5 bottom-1.5 rounded-lg border border-ember/40 bg-[#f7efe0] transition-[left] duration-300 ease-out"
+              style={{
+                width: 'calc((100% - 12px) / 3)',
+                left: `calc(6px + ${SECTIONS.indexOf(activeSection)} * (100% - 12px) / 3)`,
+                boxShadow: '0 2px 10px rgba(11,4,24,0.6)'
+              }}
+              aria-hidden="true"
+            >
+              <div className="h-full rounded-[7px] border-b-[3px] border-b-gilt/70"></div>
+            </div>
+
+            <div className="relative z-10 grid grid-cols-3">
+              {SECTIONS.map((section) => (
+                <button
+                  key={section}
+                  onClick={() => setActiveSection(section)}
+                  aria-pressed={activeSection === section}
+                  className={`cursor-pointer rounded-lg py-3 text-sm font-semibold capitalize transition-colors duration-300 ${
+                    activeSection === section
+                      ? 'text-grape'
+                      : 'text-star/60 hover:text-star'
+                  }`}
+                >
+                  {section}
+                </button>
+              ))}
             </div>
           </div>
+        </div>
 
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-28">
+          <h2
+            className="font-display font-bold text-white mb-4"
+            style={{
+              fontSize: 'clamp(2.1rem, 6vw, 3.4rem)',
+              letterSpacing: '-0.03em',
+              lineHeight: 1.05
+            }}
+          >
             {getSectionTitle()}
           </h2>
-          <p className="text-xl text-purple-200 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-xl text-lg font-light leading-relaxed text-star/60">
             Below are some projects I'm proud of working on...
           </p>
         </div>
 
         <div className="relative">
           {getCurrentData().map((item, index) => (
-            <div key={`${activeSection}-${item.id}`} className="relative mb-32 last:mb-0">
-              <ProjectNode 
+            <div key={`${activeSection}-${item.id}`} className="relative mb-36 last:mb-0">
+              <ProjectNode
                 project={item}
                 isLast={index === getCurrentData().length - 1}
                 nextProject={index < getCurrentData().length - 1 ? getCurrentData()[index + 1] : null}
