@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Fires once when an element scrolls into view. Used to orchestrate the
- * roadmap reveal: each project plate rises, then its trace draws itself.
- */
-export default function useInView({ threshold = 0.2, rootMargin = '0px 0px -12% 0px' } = {}) {
+ * Tracks whether an element is in view. With `once` (the default) it fires a
+ * single time and stops observing — used to orchestrate the roadmap reveal:
+ * each project plate rises, then its trace draws itself. With `once: false`
+ * it keeps tracking, flipping back off when the element leaves — used for
+ * state tied to the reader's current position, like the screenshot lift. */
+export default function useInView({ threshold = 0.2, rootMargin = '0px 0px -12% 0px', once = true } = {}) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
 
@@ -21,7 +23,9 @@ export default function useInView({ threshold = 0.2, rootMargin = '0px 0px -12% 
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.disconnect();
+          if (once) observer.disconnect();
+        } else if (!once) {
+          setInView(false);
         }
       },
       { threshold, rootMargin }
@@ -29,7 +33,7 @@ export default function useInView({ threshold = 0.2, rootMargin = '0px 0px -12% 
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [threshold, rootMargin]);
+  }, [threshold, rootMargin, once]);
 
   return [ref, inView];
 }

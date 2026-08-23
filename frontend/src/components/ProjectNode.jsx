@@ -12,6 +12,10 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [copyRef, copyInView] = useInView({ threshold: 0.25 });
   const [plateRef, plateInView] = useInView({ threshold: 0.25 });
+  // Live observer for the screenshot lift: the dimming veil rises while the
+  // reader is on this project and settles back when they scroll away, so
+  // the bright card marks their place in the roadmap.
+  const [focusRef, plateFocused] = useInView({ threshold: 0.55, rootMargin: '0px', once: false });
   const [traceRef, traceInView] = useInView({ threshold: 0.35, rootMargin: '0px' });
   // The desktop trace lives in a `hidden lg:block` wrapper, which never
   // intersects, so the stacked mobile trace needs an observer of its own.
@@ -93,7 +97,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           className={`reveal ${plateInView ? 'reveal-in' : ''} relative`}
         >
           {/* Chart plate — responsive width with maintained aspect ratio */}
-          <div className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{ aspectRatio: '600/380' }}>
+          <div ref={focusRef} className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{ aspectRatio: '600/380' }}>
             {/* Outer frame */}
             <div className="group w-full h-full rounded-2xl p-4.5 relative">
               {/* Blurred backing: fill + raised shadows, blurred so the node edges look soft/neumorphic */}
@@ -122,10 +126,13 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                 />
 
                 {/* Screenshots are bright and each has its own palette. This
-                    layer sinks them into the night; hovering lifts it so the
-                    real thing comes forward. */}
+                    layer sinks them into the night; it lifts while the reader
+                    is on this project (not on hover) so the current card
+                    comes forward on its own. */}
                 <div
-                  className="absolute inset-0 pointer-events-none transition-opacity duration-500 group-hover:opacity-25"
+                  className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ${
+                    plateFocused ? 'opacity-25' : 'opacity-100'
+                  }`}
                   style={{
                     background:
                       'linear-gradient(200deg, rgba(26,8,54,0.42) 0%, rgba(26,8,54,0.26) 45%, rgba(13,3,32,0.5) 100%)',
