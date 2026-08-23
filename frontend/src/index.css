@@ -164,6 +164,33 @@
     50%      { opacity: calc(var(--cloud-opacity, 0.8) * 0.7); }
   }
 
+  /* Low hero clouds */
+  .hero-cloud-low-left {
+    bottom: 18%;
+    left: -10%;
+    width: 42vw;
+  }
+
+  .hero-cloud-low-right {
+    bottom: 12%;
+    right: -12%;
+    width: 46vw;
+  }
+
+  @media (max-width: 639px) {
+    .hero-cloud-low-left {
+      bottom: 42%;
+      left: -14%;
+      width: 58vw;
+    }
+
+    .hero-cloud-low-right {
+      bottom: 36%;
+      right: -16%;
+      width: 62vw;
+    }
+  }
+
   /* Coffee steam */
   .coffee-steam {
     position: absolute;

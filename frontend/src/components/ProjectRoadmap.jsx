@@ -23,6 +23,7 @@ const ProjectRoadmap = () => {
       id: 1,
       title: "Roadmap AI",
       description: "AI-powered personal project management assistant. Describe your vision and get a end-to-end implementation plan tailored to your needs and experience level. This plan can be edited and expanded overtime as your project evolves.",
+      shortDescription: "AI assistant that turns your project vision into an editable, end-to-end implementation plan.",
       tags: ["React", "FastAPI", "PostgreSQL", "OpenAI API"],
       gradient: "from-purple-500 to-pink-500",
       position: "right",
@@ -33,6 +34,7 @@ const ProjectRoadmap = () => {
       id: 2,
       title: "TalentBridge",
       description: "Platform for connecting EB1 and EB2 visa holders with US based employers. Currently in the proposal stage, with 70+ EB1/EB2 visa holders agreeing to join the platform on launch.",
+      shortDescription: "Platform connecting EB1/EB2 visa holders with US employers — 70+ signed on for launch.",
       tags: ["React", "Django", "PostgreSQL"],
       gradient: "from-pink-500 to-red-500",
       position: "left",
@@ -43,6 +45,7 @@ const ProjectRoadmap = () => {
       id: 3,
       title: "Simple Machine",
       description: "Semester long project for CPSC 213. Implemented a simple CPU simulator which supports uploading and running SM213 assembly code.",
+      shortDescription: "CPU simulator that supports uploading and running SM213 assembly code.",
       tags: ["Java Swing", "SM213 Assembly"],
       gradient: "from-orange-500 to-yellow-500",
       position: "right",
@@ -53,6 +56,7 @@ const ProjectRoadmap = () => {
       id: 4,
       title: "Expense Manager",
       description: "Semester long project for CPSC 210. Implemented a desktop application for managing personal finances, with features such as expense tracking, budgeting, and data visualization.",
+      shortDescription: "Desktop app for expense tracking, budgeting, and visualizing personal finances.",
       tags: ["Java Swing", "JUnit", "JFreeChart"],
       gradient: "from-yellow-500 to-green-500",
       position: "left",
@@ -66,6 +70,7 @@ const ProjectRoadmap = () => {
       id: 1,
       title: "Euleris AI",
       description: "Tasked with R&D and buliding out a problem agnostic AI Competitive Programming Tutor. Worked on full-stack tutor feature as well as Multi-Agent system which handles user interaction, quality assurance, etc. Worked on the project end-to-end from ideation to deployment.",
+      shortDescription: "Full-stack, multi-agent AI competitive programming tutor, built from ideation to deployment.",
       tags: ["React", "FastAPI", "Django", "PostgreSQL", "OpenAI API", "LangChain"],
       gradient: "from-purple-500 to-pink-500",
       position: "right",
@@ -77,6 +82,7 @@ const ProjectRoadmap = () => {
       id: 2,
       title: "PokerBots FIU",
       description: "Platform for running competitions for the annual FIU PokerBots hackathon. Platform supports a plugged-in game engine with customizable rule sets. Competitants iteratively build and test their bots on the platform with goal of winning the final competition.",
+      shortDescription: "Competition platform for FIU's annual PokerBots hackathon, where teams iteratively build and test bots.",
       tags: ["Flask", "RabbitMQ", "Celery", "PostgreSQL", "MinIO"],
       gradient: "from-pink-500 to-red-500",
       position: "left",
@@ -88,6 +94,7 @@ const ProjectRoadmap = () => {
       id: 3,
       title: "INIT Build FIU - GatherU",
       description: "Led a team of 11 students to build a social media style university event discovery page, with gamification to encourage student engagement.",
+      shortDescription: "Gamified university event discovery page.",
       tags: ["React", "Django", "PostgreSQL", "MinIO"],
       gradient: "from-red-500 to-orange-500",
       position: "right",
@@ -98,7 +105,8 @@ const ProjectRoadmap = () => {
     {
       id: 4,
       title: "INIT Build FIU - CashCore",
-      description: "Backend Lead of a personal finance management web application. Integrated with Plaid API to allow users to link their bank accounts and view transactions, budgets, and financial insights all in one place.",
+      description: "Personal finance management web application. Integrated with Plaid API to allow users to link their bank accounts and view transactions, budgets, and financial insights all in one place.",
+      shortDescription: "Personal finance app with Plaid-linked accounts, budgets, and insights.",
       tags: ["Next.js", "Django", "PostgreSQL", "Plaid API"],
       gradient: "from-orange-500 to-yellow-500",
       position: "right",
@@ -113,6 +121,7 @@ const ProjectRoadmap = () => {
       id: 1,
       title: "FinTerra",
       description: "Financial dashboard with Elowen, your multi-agent financial advisor democratizing institutional-quality financial planning. Expert guidance that traditionally costs thousands annually, now accessible through AI-powered portfolio analysis and personalized recommendations.",
+      shortDescription: "Financial dashboard with Elowen, a multi-agent AI advisor for personalized portfolio guidance.",
       tags: ["React", "FastAPI", "Google ADK", "PostgreSQL", "Vultr VPS"],
       gradient: "from-blue-500 to-purple-500",
       position: "right",
@@ -124,6 +133,7 @@ const ProjectRoadmap = () => {
       id: 2,
       title: "Translate Flow",
       description: "Multi-agent translation system that mimics professional translation workflows (translator-reviewer pattern). Provides context aware translations by identifying UI element groups (e.g. header and its paragraphs) while also preserving brand voice and avoiding translation of brand terms.",
+      shortDescription: "Multi-agent translation system with UI context-aware, brand-voice-preserving translations.",
       tags: ["React", "FastAPI", "Google ADK", "SQLite"],
       gradient: "from-purple-500 to-pink-500",
       position: "left",
@@ -213,7 +223,9 @@ const ProjectRoadmap = () => {
           </div>
         </div>
 
-        <div className="text-center mb-28">
+        {/* Phones: the tab switcher already names the section, so the big
+            heading is redundant — hide it and its spacing. */}
+        <div className="hidden sm:block text-center mb-28">
           <h2
             className="font-display font-bold text-white mb-4"
             style={{
