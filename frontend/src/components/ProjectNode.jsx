@@ -59,18 +59,20 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           )}
 
           <p
-            className={`mb-6 max-w-[58ch] text-lg font-light leading-relaxed text-star/70 ${
+            className={`mb-6 max-w-[58ch] text-[0.85rem] sm:text-lg font-light leading-relaxed text-star/70 ${
               isLeft ? 'lg:ml-auto' : ''
             } mx-auto lg:mx-0`}
           >
-            {project.description}
+            {/* Phones get the condensed copy, sm+ the full description. */}
+            <span className="sm:hidden">{project.shortDescription || project.description}</span>
+            <span className="hidden sm:inline">{project.description}</span>
           </p>
 
           <div className={`flex flex-wrap gap-1.5 ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} justify-center`}>
             {project.tags.map((tag, index) => (
               <span
                 key={index}
-                className="rounded-full border border-lilac/30 bg-lilac/8 px-3 py-1 text-sm font-medium text-lilac/90 transition-colors duration-300 hover:border-ember/60 hover:text-ember"
+                className="rounded-full border border-lilac/30 bg-lilac/8 px-2.5 py-0.5 text-xs sm:px-3 sm:py-1 sm:text-sm font-medium text-lilac/90 transition-colors duration-300 hover:border-ember/60 hover:text-ember"
               >
                 {tag}
               </span>
@@ -275,7 +277,12 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           style={{ bottom: '-144px', zIndex: 0, height: '144px' }}
           aria-hidden="true"
         >
-          <span className="trace-node" style={{ left: '50%', top: '3px' }} />
+          <div
+            className="absolute overflow-hidden"
+            style={{ top: 0, left: '50%', width: '56px', height: '31px', marginLeft: '-28px' }}
+          >
+            <span className="trace-node" style={{ left: '28px', top: '-3px' }} />
+          </div>
           <svg className="h-full w-1" viewBox="0 0 2 144" preserveAspectRatio="none">
             <path d="M1 0L1 144" pathLength="1" fill="none" stroke="#7c5cc4" strokeOpacity="0.24" strokeWidth="1.5" />
             <path

@@ -176,15 +176,14 @@ const Hero = () => {
               animation: 'cloudDriftWide 26s ease-in-out infinite, cloudBreathe 19s ease-in-out infinite'
             }}
           />
+          {/* The two bright low clouds: geometry lives in CSS so phones can
+              re-seat them above the (taller, cropped) artwork. */}
           <img
             src="/assets/cloud_blue_1.svg"
             alt=""
             aria-hidden="true"
-            className="hero-cloud"
+            className="hero-cloud hero-cloud-low-left"
             style={{
-              bottom: '18%',
-              left: '-10%',
-              width: '42vw',
               '--cloud-opacity': 0.9,
               opacity: 0.9,
               filter: 'drop-shadow(0 0 28px rgba(186,210,255,0.45))',
@@ -195,11 +194,8 @@ const Hero = () => {
             src="/assets/cloud_blue_4.svg"
             alt=""
             aria-hidden="true"
-            className="hero-cloud"
+            className="hero-cloud hero-cloud-low-right"
             style={{
-              bottom: '12%',
-              right: '-12%',
-              width: '46vw',
               '--cloud-opacity': 0.92,
               opacity: 0.92,
               filter: 'drop-shadow(0 0 30px rgba(186,210,255,0.5))',
@@ -221,7 +217,9 @@ const Hero = () => {
       <div className="hero-grain absolute inset-0 z-10 pointer-events-none" />
 
       <div className="relative z-20 flex h-screen flex-col items-center justify-between px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
-        <div className="text-center max-w-4xl mx-auto">
+        {/* Phones: centred in the space above the artwork (top-pinned leaves
+            a dead band). sm+: back to the top, as before. */}
+        <div className="text-center max-w-4xl mx-auto flex-1 flex flex-col justify-center sm:flex-none sm:block">
           <div className="animate-fade-in-up">
             <h1
               className="font-display font-bold text-white mb-5"
@@ -268,7 +266,7 @@ const Hero = () => {
         </div>
 
         <div
-          className="relative pointer-events-none w-[180vw] sm:w-screen sm:scale-130 lg:scale-105"
+          className="relative pointer-events-none w-[240vw] sm:w-screen sm:scale-130 lg:scale-105"
           style={{ marginBottom: '-2px' }}
         >
           <img
@@ -276,7 +274,7 @@ const Hero = () => {
             alt="Developer at workstation with ground transition"
             className="h-auto"
           />
-          <div className="coffee-steam [--u:1.8vw] sm:[--u:1vw]" aria-hidden="true">
+          <div className="coffee-steam [--u:2.4vw] sm:[--u:1vw]" aria-hidden="true">
             <svg viewBox="0 0 28 130" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="steamNear" x1="0" y1="130" x2="0" y2="0" gradientUnits="userSpaceOnUse">
