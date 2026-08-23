@@ -245,12 +245,13 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                   viewBox="0 0 800 160"
                   preserveAspectRatio="none"
                   style={{
-                    /* The container overlaps the card above by 15px; the
-                       plate's blurred edge is semi-transparent, so the
-                       tucked-under stretch of line would ghost through it.
-                       Clip it off — the line starts at the card edge, under
-                       the half-sunk endpoint light. */
-                    clipPath: 'inset(15px 0 0 0)'
+                    /* The container overlaps the card above by 15px and the
+                       card below by 1px; the plates' blurred edges are
+                       semi-transparent, so any tucked-under stretch of line
+                       ghosts through them. Clip both ends — the line runs
+                       exactly from edge to edge, behind the endpoint
+                       lights. */
+                    clipPath: 'inset(15px 0 1px 0)'
                   }}
                 >
                   {/* The unlit seam, always present so the route reads */}
@@ -284,9 +285,10 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                     semi-transparent and anything behind them ghosts through.
                     Instead each light sits in an overflow-hidden box flush
                     with the edge, which clips the on-card half and its glow.
-                    This container overlaps the card above by 15px, so the
-                    top card's edge crosses it at y=15; the bottom card's
-                    edge is at the container's bottom. */}
+                    This container overlaps the card above by 15px and the
+                    card below by 1px, so the top card's edge crosses it at
+                    y=15 and the bottom card's edge sits 1px above the
+                    container's bottom. */}
                 <div
                   className="absolute overflow-hidden"
                   style={{ left: startAnchor, top: '15px', width: '56px', height: '31px', marginLeft: '-28px' }}
@@ -295,7 +297,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                 </div>
                 <div
                   className="absolute overflow-hidden"
-                  style={{ left: endAnchor, bottom: '0px', width: '56px', height: '31px', marginLeft: '-28px' }}
+                  style={{ left: endAnchor, bottom: '1px', width: '56px', height: '31px', marginLeft: '-28px' }}
                 >
                   <span className="trace-node" style={{ left: '28px', bottom: '-3px' }} />
                 </div>
