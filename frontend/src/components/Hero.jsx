@@ -303,11 +303,75 @@ const Hero = () => {
             alt="Developer at workstation with ground transition"
             className="h-auto"
           />
-          {/* Coffee steam rising from the white mug */}
-          <div className="coffee-steam" aria-hidden="true">
-            <span className="steam s1" />
-            <span className="steam s2" />
-            <span className="steam s3" />
+          {/* Coffee steam: one wavy ribbon rising from the mug and fading out.
+              --u is kept proportional to the artwork's layout width (180vw on
+              phones, 100vw above) so it stays mug-sized; the sm+ scale
+              transforms already apply to the steam, so they need no term.
+
+              The wave is drawn taller than the box and slides up by exactly one
+              period, so the loop is seamless and reads as continuous flow. The
+              fade lives in a mask on a fixed outer group — putting it on the
+              moving path would drag the fade upward along with it. */}
+          <div className="coffee-steam [--u:1.8vw] sm:[--u:1vw]" aria-hidden="true">
+            <svg viewBox="0 0 28 130" preserveAspectRatio="none">
+              <defs>
+                {/* Near: the thick part, brightest just above the rim and gone
+                    by mid-height. Far: thin, dimmer, carries to the top.
+                    Overlaid they taper, which one stroke cannot do — stroke
+                    width is constant along a path. Both ramp up from zero at
+                    the rim: the wave slides, so whichever bend happens to sit
+                    at the rim would otherwise flick the visible source from
+                    side to side across the mug. */}
+                <linearGradient id="steamNear" x1="0" y1="130" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stopColor="#fff" stopOpacity="0" />
+                  <stop offset="0.1" stopColor="#fff" stopOpacity="0.88" />
+                  <stop offset="0.22" stopColor="#fff" stopOpacity="0.68" />
+                  <stop offset="0.5" stopColor="#fff" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="steamFar" x1="0" y1="130" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stopColor="#fff" stopOpacity="0" />
+                  <stop offset="0.12" stopColor="#fff" stopOpacity="0.68" />
+                  <stop offset="0.52" stopColor="#fff" stopOpacity="0.32" />
+                  <stop offset="1" stopColor="#fff" stopOpacity="0" />
+                </linearGradient>
+                <mask id="steamMaskNear">
+                  <rect x="0" y="0" width="28" height="130" fill="url(#steamNear)" />
+                </mask>
+                <mask id="steamMaskFar">
+                  <rect x="0" y="0" width="28" height="130" fill="url(#steamFar)" />
+                </mask>
+              </defs>
+              {/* Each undulation is a different height and width (26/30/34/38
+                  tall, control offsets 1.6/2.6/3.4/4.2), so the wave widens
+                  gently as it climbs and no two bends match. A perfectly
+                  regular sine slid along itself looks completely still. Keep
+                  the offsets small: the box is squashed (3.4u × 4.5u for a
+                  28×130 viewBox), which exaggerates any side-swing. */}
+              <g mask="url(#steamMaskFar)">
+                <g className="steam-sway">
+                  <path
+                    className="steam-flow"
+                    d="M14 270q1.6-13 0-26q-2.6-15 0-30q3.4-17 0-34q-4.2-19 0-38q1.6-13 0-26q-2.6-15 0-30q3.4-17 0-34q-4.2-19 0-38q1.6-13 0-26q-2.6-15 0-30q3.4-17 0-34q-4.2-19 0-38"
+                    fill="none"
+                    stroke="#fffcf5"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                  />
+                </g>
+              </g>
+              <g mask="url(#steamMaskNear)">
+                <g className="steam-sway">
+                  <path
+                    className="steam-flow"
+                    d="M14 270q1.6-13 0-26q-2.6-15 0-30q3.4-17 0-34q-4.2-19 0-38q1.6-13 0-26q-2.6-15 0-30q3.4-17 0-34q-4.2-19 0-38q1.6-13 0-26q-2.6-15 0-30q3.4-17 0-34q-4.2-19 0-38"
+                    fill="none"
+                    stroke="#fffcf5"
+                    strokeWidth="3.4"
+                    strokeLinecap="round"
+                  />
+                </g>
+              </g>
+            </svg>
           </div>
         </div>
       </div>

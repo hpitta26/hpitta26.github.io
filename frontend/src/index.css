@@ -190,62 +190,57 @@
   }
 
   /* ---- Coffee steam ---------------------------------------------------
-     Anchored as a percentage of the coder-ground.svg box so it stays
-     glued to the mug across breakpoints. */
+     One wavy ribbon, not a cloud of puffs — which also suits the flat vector
+     artwork better than volumetric steam would. Anchored as a percentage of
+     the coder-ground.svg box so it stays glued to the mug across breakpoints.
+     --u is one "steam unit", proportional to the artwork's layout width. */
 
   .coffee-steam {
     position: absolute;
-    top: 37%;
-    left: 58%;
+    /* A hair below the rim line, so the ribbon emerges from behind the mug
+       rather than starting in mid-air above it. */
+    top: 36.9%;
+    /* Mug body spans 57.1%–58.8% of the artwork, so its centreline is 57.9%
+       (measured from the rendered pixels, not eyeballed). */
+    left: 57.9%;
     width: 0;
     height: 0;
   }
 
-  .coffee-steam .steam {
+  .coffee-steam svg {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 2vw;
-    height: 2vw;
-    margin-left: -1vw;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 250, 240, 0.95), rgba(255, 250, 240, 0) 70%);
-    filter: blur(1.6px);
-    opacity: 0;
-    will-change: transform, opacity;
+    width: calc(var(--u) * 3.4);
+    height: calc(var(--u) * 4.5);
+    margin-left: calc(var(--u) * -1.7);
+    filter: blur(calc(var(--u) * 0.13));
   }
 
-  @keyframes steamMoveA {
-    0%   { transform: translate3d(0, 0, 0) scale(0.4); }
-    20%  { transform: translate3d(-0.25vw, -1.3vw, 0) scale(0.65); }
-    55%  { transform: translate3d(-0.7vw, -3.6vw, 0) scale(1.05); }
-    100% { transform: translate3d(0.5vw, -7vw, 0) scale(1.8); }
+  /* The path runs three super-periods tall, so sliding it up by exactly one
+     (128 units) loops with no visible seam. Slow: steam drifts, it does not
+     scroll. */
+  .steam-flow {
+    animation: steamFlow 9s linear infinite;
   }
 
-  @keyframes steamMoveB {
-    0%   { transform: translate3d(0, 0, 0) scale(0.45); }
-    20%  { transform: translate3d(0.25vw, -1.4vw, 0) scale(0.7); }
-    55%  { transform: translate3d(0.7vw, -3.8vw, 0) scale(1.1); }
-    100% { transform: translate3d(-0.5vw, -7.4vw, 0) scale(1.9); }
+  @keyframes steamFlow {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-128px); }
   }
 
-  @keyframes steamFadeA {
-    0%   { opacity: 0; }
-    20%  { opacity: 0.7; }
-    55%  { opacity: 0.42; }
-    100% { opacity: 0; }
+  /* A slow lean on top of the flow, so the column is not a rigid conveyor.
+     Rotation only, pivoting at the base — any translate would drag the root
+     off the mug. */
+  .steam-sway {
+    transform-origin: 50% 100%;
+    animation: steamSway 8s ease-in-out infinite alternate;
   }
 
-  @keyframes steamFadeB {
-    0%   { opacity: 0; }
-    20%  { opacity: 0.6; }
-    55%  { opacity: 0.36; }
-    100% { opacity: 0; }
+  @keyframes steamSway {
+    from { transform: rotate(-1.6deg); }
+    to   { transform: rotate(1.6deg); }
   }
-
-  .coffee-steam .s1 { animation: steamMoveA 6.5s linear infinite, steamFadeA 6.5s ease-out infinite; }
-  .coffee-steam .s2 { animation: steamMoveB 6.5s linear infinite 2.2s, steamFadeB 6.5s ease-out infinite 2.2s; }
-  .coffee-steam .s3 { animation: steamMoveA 7s linear infinite 4.3s, steamFadeA 7s ease-out infinite 4.3s; }
 
   /* ---- Grain ----------------------------------------------------------
      Generated noise rather than a bitmap: the previous background-grain.jpg
@@ -323,9 +318,11 @@
 
     .mote { opacity: 0.28 !important; }
 
-    .coffee-steam .steam {
+    /* The ribbon stays, it just stops moving — a static wavy plume still
+       reads as steam, so the mug does not go cold. */
+    .steam-flow,
+    .steam-sway {
       animation: none !important;
-      opacity: 0 !important;
     }
 
     .animate-fade-in-up {
