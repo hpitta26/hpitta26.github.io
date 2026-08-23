@@ -214,7 +214,7 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           style={{
             bottom: '-145px',
             left: '0',
-            zIndex: 5,
+            zIndex: 0,
             height: '160px'
           }}
           aria-hidden="true"
@@ -240,10 +240,18 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
             return (
               <>
                 <svg
-                  className="absolute overflow-visible w-full"
+                  className="absolute w-full"
                   height="160"
                   viewBox="0 0 800 160"
                   preserveAspectRatio="none"
+                  style={{
+                    /* The container overlaps the card above by 15px; the
+                       plate's blurred edge is semi-transparent, so the
+                       tucked-under stretch of line would ghost through it.
+                       Clip it off — the line starts at the card edge, under
+                       the half-sunk endpoint light. */
+                    clipPath: 'inset(15px 0 0 0)'
+                  }}
                 >
                   {/* The unlit seam, always present so the route reads */}
                   <path
@@ -267,25 +275,30 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                         'drop-shadow(0 0 10px rgba(124, 92, 196, 0.75)) drop-shadow(0 0 3px rgba(236, 230, 247, 0.25))'
                     }}
                   />
-                  {/* The travelling light */}
-                  <path
-                    className="trace-pulse"
-                    d={path}
-                    pathLength="1"
-                    fill="none"
-                    stroke="#f3d7a3"
-                    strokeWidth="2.25"
-                    strokeLinecap="round"
-                    style={{
-                      filter:
-                        'drop-shadow(0 0 9px rgba(243,215,163,0.95)) drop-shadow(0 0 22px rgba(201,163,106,0.6))'
-                    }}
-                  />
                 </svg>
 
-                {/* Endpoint lights, in HTML so they stay circular */}
-                <span className="trace-node" style={{ left: startAnchor, top: '-3.5px' }} />
-                <span className="trace-node" style={{ left: endAnchor, bottom: '-3.5px' }} />
+                {/* Endpoint lights, in HTML so they stay circular. Each dot
+                    is centred on a card edge with only the off-card half
+                    showing. z-index alone cannot hide the other half: the
+                    plate backing is blurred, so its edge pixels are
+                    semi-transparent and anything behind them ghosts through.
+                    Instead each light sits in an overflow-hidden box flush
+                    with the edge, which clips the on-card half and its glow.
+                    This container overlaps the card above by 15px, so the
+                    top card's edge crosses it at y=15; the bottom card's
+                    edge is at the container's bottom. */}
+                <div
+                  className="absolute overflow-hidden"
+                  style={{ left: startAnchor, top: '15px', width: '56px', height: '31px', marginLeft: '-28px' }}
+                >
+                  <span className="trace-node" style={{ left: '28px', top: '-3px' }} />
+                </div>
+                <div
+                  className="absolute overflow-hidden"
+                  style={{ left: endAnchor, bottom: '0px', width: '56px', height: '31px', marginLeft: '-28px' }}
+                >
+                  <span className="trace-node" style={{ left: '28px', bottom: '-3px' }} />
+                </div>
               </>
             );
           })()}
@@ -318,15 +331,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
               style={{
                 filter: 'drop-shadow(0 0 10px rgba(124, 92, 196, 0.75)) drop-shadow(0 0 3px rgba(236, 230, 247, 0.25))'
               }}
-            />
-            <path
-              className="trace-pulse"
-              d="M1 0L1 144"
-              pathLength="1"
-              fill="none"
-              stroke="#f3d7a3"
-              strokeWidth="2.25"
-              style={{ filter: 'drop-shadow(0 0 9px rgba(243,215,163,0.95))' }}
             />
           </svg>
           <span className="trace-node" style={{ left: '50%', bottom: '-3.5px' }} />

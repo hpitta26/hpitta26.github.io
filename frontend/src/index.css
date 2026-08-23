@@ -256,8 +256,8 @@
 
   /* ---- The vein -------------------------------------------------------
      The one signature, and the page's only light. Paths carry pathLength="1"
-     so the draw-on and the travelling light both work in normalised units
-     regardless of the route's real length. */
+     so the draw-on works in normalised units regardless of the route's real
+     length. */
 
   .trace-line {
     stroke-dasharray: 1;
@@ -267,23 +267,6 @@
 
   .trace-in .trace-line {
     stroke-dashoffset: 0;
-  }
-
-  .trace-pulse {
-    stroke-dasharray: 0.07 0.93;
-    stroke-dashoffset: 0.07;
-    opacity: 0;
-  }
-
-  .trace-in .trace-pulse {
-    animation: tracePulse 4.6s cubic-bezier(0.45, 0, 0.55, 1) 1.9s infinite;
-  }
-
-  @keyframes tracePulse {
-    0%        { stroke-dashoffset: 0.07; opacity: 0; }
-    14%       { opacity: 1; }
-    70%       { opacity: 1; }
-    86%, 100% { stroke-dashoffset: -0.93; opacity: 0; }
   }
 
   /* Endpoint lights, positioned in percentages that match the trace SVG's
@@ -297,12 +280,6 @@
     border-radius: 9999px;
     background: var(--color-ember);
     box-shadow: 0 0 10px rgba(243, 215, 163, 0.9), 0 0 22px rgba(201, 163, 106, 0.45);
-    opacity: 0;
-    transition: opacity 0.9s ease-out 0.7s;
-  }
-
-  .trace-in .trace-node {
-    opacity: 1;
   }
 
   /* ---- Motion preferences ---------------------------------------------- */
@@ -339,13 +316,6 @@
 
     .trace-line {
       stroke-dashoffset: 0;
-      transition: none;
-    }
-
-    .trace-pulse { display: none; }
-
-    .trace-node {
-      opacity: 1;
       transition: none;
     }
   }

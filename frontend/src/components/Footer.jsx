@@ -26,17 +26,13 @@ const Footer = () => {
     <footer id="contact" className="relative overflow-hidden bg-night-deep py-20 text-star">
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Separator — the vein, run out flat and fading at both ends */}
-        <div className="relative mb-16 flex items-center justify-center" aria-hidden="true">
+        <div className="mb-16" aria-hidden="true">
           <div
             className="h-px w-full"
             style={{
               background:
                 'linear-gradient(90deg, rgba(124,92,196,0) 0%, rgba(201,163,106,0.5) 50%, rgba(124,92,196,0) 100%)'
             }}
-          />
-          <span
-            className="absolute h-1.5 w-1.5 rounded-full bg-ember"
-            style={{ boxShadow: '0 0 12px rgba(243,215,163,0.95), 0 0 26px rgba(201,163,106,0.55)' }}
           />
         </div>
 
