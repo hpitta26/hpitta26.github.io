@@ -277,7 +277,12 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           style={{ bottom: '-144px', zIndex: 0, height: '144px' }}
           aria-hidden="true"
         >
-          <span className="trace-node" style={{ left: '50%', top: '3px' }} />
+          <div
+            className="absolute overflow-hidden"
+            style={{ top: 0, left: '50%', width: '56px', height: '31px', marginLeft: '-28px' }}
+          >
+            <span className="trace-node" style={{ left: '28px', top: '-3px' }} />
+          </div>
           <svg className="h-full w-1" viewBox="0 0 2 144" preserveAspectRatio="none">
             <path d="M1 0L1 144" pathLength="1" fill="none" stroke="#7c5cc4" strokeOpacity="0.24" strokeWidth="1.5" />
             <path
