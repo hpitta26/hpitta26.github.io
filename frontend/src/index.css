@@ -1,28 +1,16 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---------------------------------------------------------------------------
-   Sky at the top, earth everywhere below. The coder sits on the surface at
-   dusk; everything under the horizon is ground, so the projects are strung
-   underground on a vein of light rather than charted across a sky.
-
-   One rule keeps this from turning into a light show: the vein and its
-   endpoints are the only things that glow, because they are the only things
-   that are light. Borders, chips and buttons stay matte.
-   --------------------------------------------------------------------------- */
-
+/* Palette + fonts */
 @theme {
-  /* Surfaces. --color-night is seam-critical: coder-ground.svg fades into it. */
   --color-night-deep: #0b0418;
   --color-night: #1a0836;
 
-  /* Structure — cool and matte */
   --color-vein: #7c5cc4;
   --color-lilac: #b098d0;
   --color-grape: #7147ab;
   --color-star: #ece6f7;
 
-  /* Light — warm, and used sparingly */
   --color-ember: #f3d7a3;
   --color-gilt: #c9a36a;
 
@@ -31,6 +19,7 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* Base */
 @layer base {
   html,
   body,
@@ -51,7 +40,6 @@
     letter-spacing: -0.02em;
   }
 
-  /* Lets the browser avoid orphans and ragged rivers in the descriptions. */
   p {
     text-wrap: pretty;
   }
@@ -62,15 +50,12 @@
   }
 }
 
-/* One consistent focus ring everywhere, since the page is mostly dark glass.
-   Unlayered so it outranks Preflight. It must not set border-radius — the
-   outline already follows each control's own shape, and forcing a radius here
-   squares off the pill-shaped buttons whenever they take focus. */
 :focus-visible {
   outline: 2px solid #f3d7a3;
   outline-offset: 3px;
 }
 
+/* Components */
 @layer components {
   .animate-fade-in-up {
     animation: fadeInUp 1.4s ease-out forwards;
@@ -79,6 +64,7 @@
   }
 }
 
+/* Utilities */
 @layer utilities {
   @keyframes fadeInUp {
     to {
@@ -87,8 +73,7 @@
     }
   }
 
-  /* ---- Scroll reveal ---------------------------------------------------- */
-
+  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(26px);
@@ -101,8 +86,7 @@
     transform: none;
   }
 
-  /* ---- Aurora ---------------------------------------------------------- */
-
+  /* Aurora */
   @keyframes auroraDriftA {
     0%   { transform: translate3d(-12%, -8%, 0) scale(1); }
     50%  { transform: translate3d(10%, 6%, 0) scale(1.25); }
@@ -129,20 +113,12 @@
     will-change: transform;
   }
 
-  /* ---- Stars ----------------------------------------------------------
-     Sky only, and static. Ninety-odd elements animating their opacity was
-     a lot of motion to buy a twinkle nobody asked for; a fixed field with
-     varied brightness reads calmer and costs nothing. */
-
+  /* Stars + motes */
   .star-dot {
     position: absolute;
     border-radius: 9999px;
     background: #fdf8ec;
   }
-
-  /* ---- Motes ----------------------------------------------------------
-     The one piece of ambient motion below the horizon, so the earth is not
-     a dead slab. Slow, sparse, and warm. */
 
   .mote {
     position: absolute;
@@ -158,8 +134,7 @@
     100% { transform: translate3d(var(--mote-x, 2vw), -14vh, 0); opacity: 0; }
   }
 
-  /* ---- Clouds ---------------------------------------------------------- */
-
+  /* Clouds */
   .hero-cloud {
     position: absolute;
     pointer-events: none;
@@ -189,19 +164,10 @@
     50%      { opacity: calc(var(--cloud-opacity, 0.8) * 0.7); }
   }
 
-  /* ---- Coffee steam ---------------------------------------------------
-     One wavy ribbon, not a cloud of puffs — which also suits the flat vector
-     artwork better than volumetric steam would. Anchored as a percentage of
-     the coder-ground.svg box so it stays glued to the mug across breakpoints.
-     --u is one "steam unit", proportional to the artwork's layout width. */
-
+  /* Coffee steam */
   .coffee-steam {
     position: absolute;
-    /* A hair below the rim line, so the ribbon emerges from behind the mug
-       rather than starting in mid-air above it. */
     top: 36.9%;
-    /* Mug body spans 57.1%–58.8% of the artwork, so its centreline is 57.9%
-       (measured from the rendered pixels, not eyeballed). */
     left: 57.9%;
     width: 0;
     height: 0;
@@ -217,9 +183,6 @@
     filter: blur(calc(var(--u) * 0.13));
   }
 
-  /* The path runs three super-periods tall, so sliding it up by exactly one
-     (128 units) loops with no visible seam. Slow: steam drifts, it does not
-     scroll. */
   .steam-flow {
     animation: steamFlow 9s linear infinite;
   }
@@ -229,9 +192,6 @@
     to   { transform: translateY(-128px); }
   }
 
-  /* A slow lean on top of the flow, so the column is not a rigid conveyor.
-     Rotation only, pivoting at the base — any translate would drag the root
-     off the mug. */
   .steam-sway {
     transform-origin: 50% 100%;
     animation: steamSway 8s ease-in-out infinite alternate;
@@ -242,10 +202,7 @@
     to   { transform: rotate(1.6deg); }
   }
 
-  /* ---- Grain ----------------------------------------------------------
-     Generated noise rather than a bitmap: the previous background-grain.jpg
-     was a 5.6 MB download for an effect at low opacity. */
-
+  /* Grain */
   .hero-grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 180px 180px;
@@ -254,11 +211,7 @@
     mix-blend-mode: soft-light;
   }
 
-  /* ---- The vein -------------------------------------------------------
-     The one signature, and the page's only light. Paths carry pathLength="1"
-     so the draw-on works in normalised units regardless of the route's real
-     length. */
-
+  /* Roadmap trace */
   .trace-line {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
@@ -269,9 +222,6 @@
     stroke-dashoffset: 0;
   }
 
-  /* Endpoint lights, positioned in percentages that match the trace SVG's
-     viewBox mapping exactly (188/800 and 612/800), so they land on the path
-     without inheriting preserveAspectRatio="none" horizontal stretch. */
   .trace-node {
     position: absolute;
     width: 6px;
@@ -282,8 +232,7 @@
     box-shadow: 0 0 10px rgba(243, 215, 163, 0.9), 0 0 22px rgba(201, 163, 106, 0.45);
   }
 
-  /* ---- Motion preferences ---------------------------------------------- */
-
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 
@@ -295,8 +244,6 @@
 
     .mote { opacity: 0.28 !important; }
 
-    /* The ribbon stays, it just stops moving — a static wavy plume still
-       reads as steam, so the mug does not go cold. */
     .steam-flow,
     .steam-sway {
       animation: none !important;

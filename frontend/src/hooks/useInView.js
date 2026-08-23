@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
-/**
- * Tracks whether an element is in view. With `once` (the default) it fires a
- * single time and stops observing — used to orchestrate the roadmap reveal:
- * each project plate rises, then its trace draws itself. With `once: false`
- * it keeps tracking, flipping back off when the element leaves — used for
- * state tied to the reader's current position, like the screenshot lift. */
+// Tracks whether an element is in the viewport (IntersectionObserver).
+// once: true fires a single time (scroll reveals); once: false keeps
+// toggling as the element enters and leaves (screenshot brightening).
+
 export default function useInView({ threshold = 0.2, rootMargin = '0px 0px -12% 0px', once = true } = {}) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);

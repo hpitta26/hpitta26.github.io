@@ -1,9 +1,6 @@
-/**
- * Deterministic ambient particles — stars for the sky, motes for the earth.
- *
- * A seeded LCG rather than Math.random so a field is identical across
- * renders: particles that jump on re-render read as a glitch, not atmosphere.
- */
+// Generates the hero's background decorations (stars and drifting motes).
+// Seeded random so the layout is identical on every render/visit.
+
 function lcg(seed) {
   let state = seed;
   return () => {
@@ -12,10 +9,6 @@ function lcg(seed) {
   };
 }
 
-/**
- * Stars. Sky only — there are none below the horizon. Static: brightness
- * varies per star, but nothing animates.
- */
 export function makeStars(count, seed) {
   const rand = lcg(seed);
 
@@ -28,10 +21,6 @@ export function makeStars(count, seed) {
   }));
 }
 
-/**
- * Motes. Underground dust, lifting slowly and fading in and out. Each drifts
- * sideways by its own amount so the field never looks like it is marching.
- */
 export function makeMotes(count, seed) {
   const rand = lcg(seed);
 
