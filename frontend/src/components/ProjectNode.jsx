@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import useInView from '../hooks/useInView';
 
-/* The vein SVG maps viewBox x linearly across the full row width
-   (preserveAspectRatio="none"), so these percentages land exactly on the
-   path endpoints at x=188 and x=612 of an 800-unit box. */
 const LEFT_ANCHOR = '23.5%';
 const RIGHT_ANCHOR = '76.5%';
 
@@ -11,14 +8,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
   const isLeft = project.position === 'left';
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [copyRef, copyInView] = useInView({ threshold: 0.25 });
-  const [plateRef, plateInView] = useInView({ threshold: 0.25 });
-  // Live observer for the screenshot lift: the dimming veil rises while the
-  // reader is on this project and settles back when they scroll away, so
-  // the bright card marks their place in the roadmap.
+  const [plateRef, plateInView] = useInView({ threshold: 0.25 }); 
   const [focusRef, plateFocused] = useInView({ threshold: 0.55, rootMargin: '0px', once: false });
   const [traceRef, traceInView] = useInView({ threshold: 0.35, rootMargin: '0px' });
-  // The desktop trace lives in a `hidden lg:block` wrapper, which never
-  // intersects, so the stacked mobile trace needs an observer of its own.
   const [mobileTraceRef, mobileTraceInView] = useInView({ threshold: 0.05, rootMargin: '0px' });
 
   const nextImage = () => {
@@ -41,7 +33,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
 
   return (
     <div className={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center ${isLeft ? 'lg:flex-row-reverse' : ''}`}>
-      {/* Project Description - Below node on small screens */}
       <div className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} order-2 z-10 flex justify-center`}>
         <div
           ref={copyRef}
@@ -67,8 +58,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
             </p>
           )}
 
-          {/* Measure capped in ch: at 600px these lines ran long enough to
-              make the eye lose its place on the return sweep. */}
           <p
             className={`mb-6 max-w-[58ch] text-lg font-light leading-relaxed text-star/70 ${
               isLeft ? 'lg:ml-auto' : ''
@@ -90,17 +79,13 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         </div>
       </div>
 
-      {/* Larger Project Node */}
       <div className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} order-1 z-10 flex justify-center relative`}>
         <div
           ref={plateRef}
           className={`reveal ${plateInView ? 'reveal-in' : ''} relative`}
         >
-          {/* Chart plate — responsive width with maintained aspect ratio */}
           <div ref={focusRef} className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{ aspectRatio: '600/380' }}>
-            {/* Outer frame */}
             <div className="group w-full h-full rounded-2xl p-4.5 relative">
-              {/* Blurred backing: fill + raised shadows, blurred so the node edges look soft/neumorphic */}
               <div
                 className="absolute inset-0 rounded-2xl"
                 style={{
@@ -111,13 +96,11 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                 }}
               />
 
-              {/* Hairline rim */}
               <div
                 className="absolute inset-0 rounded-2xl pointer-events-none border border-ember/20 transition-colors duration-500 group-hover:border-ember/45"
                 aria-hidden="true"
               />
 
-              {/* Inner Glass Card */}
               <div className="w-full h-full rounded-lg overflow-hidden relative z-[1]">
                 <img
                   src={`/assets/${project.images[currentImageIndex]}`}
@@ -125,10 +108,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                   className="w-full h-full object-cover"
                 />
 
-                {/* Screenshots are bright and each has its own palette. This
-                    layer sinks them into the night; it lifts while the reader
-                    is on this project (not on hover) so the current card
-                    comes forward on its own. */}
                 <div
                   className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ${
                     plateFocused ? 'opacity-25' : 'opacity-100'
@@ -143,17 +122,14 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                   aria-hidden="true"
                 />
 
-                {/* Inner edge shadow so the image sits *in* the plate */}
                 <div
                   className="absolute inset-0 rounded-lg pointer-events-none"
                   style={{ boxShadow: 'inset 0 0 22px rgba(13,3,32,0.7)', zIndex: 2 }}
                   aria-hidden="true"
                 />
 
-                {/* Navigation arrows - only show if multiple images */}
                 {project.images.length > 1 && (
                   <>
-                    {/* Previous arrow */}
                     <button
                       onClick={prevImage}
                       disabled={isFirstImage}
@@ -169,7 +145,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       </svg>
                     </button>
 
-                    {/* Next arrow */}
                     <button
                       onClick={nextImage}
                       disabled={isLastImage}
@@ -185,7 +160,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                       </svg>
                     </button>
 
-                    {/* Image indicators — ticks on a scale rather than dots */}
                     <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/10 bg-night-deep/55 px-2.5 py-1.5 backdrop-blur-md">
                       {project.images.map((_, index) => (
                         <button
@@ -209,9 +183,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         </div>
       </div>
 
-      {/* The vein, on large screens: a seam of light in the earth that draws
-          itself as you descend, then carries a lantern down to the next
-          project. */}
       {!isLast && nextProject && (
         <div
           ref={traceRef}
@@ -252,16 +223,9 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                   viewBox="0 0 800 160"
                   preserveAspectRatio="none"
                   style={{
-                    /* The container overlaps the card above by 15px and the
-                       card below by 1px; the plates' blurred edges are
-                       semi-transparent, so any tucked-under stretch of line
-                       ghosts through them. Clip both ends — the line runs
-                       exactly from edge to edge, behind the endpoint
-                       lights. */
                     clipPath: 'inset(15px 0 1px 0)'
                   }}
                 >
-                  {/* The unlit seam, always present so the route reads */}
                   <path
                     d={path}
                     pathLength="1"
@@ -270,7 +234,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                     strokeOpacity="0.22"
                     strokeWidth="1.5"
                   />
-                  {/* Kindled as you descend */}
                   <path
                     className="trace-line"
                     d={path}
@@ -285,17 +248,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
                   />
                 </svg>
 
-                {/* Endpoint lights, in HTML so they stay circular. Each dot
-                    is centred on a card edge with only the off-card half
-                    showing. z-index alone cannot hide the other half: the
-                    plate backing is blurred, so its edge pixels are
-                    semi-transparent and anything behind them ghosts through.
-                    Instead each light sits in an overflow-hidden box flush
-                    with the edge, which clips the on-card half and its glow.
-                    This container overlaps the card above by 15px and the
-                    card below by 1px, so the top card's edge crosses it at
-                    y=15 and the bottom card's edge sits 1px above the
-                    container's bottom. */}
                 <div
                   className="absolute overflow-hidden"
                   style={{ left: startAnchor, top: '15px', width: '56px', height: '31px', marginLeft: '-28px' }}
@@ -314,10 +266,6 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
         </div>
       )}
 
-      {/* Stacked layout: the vein spans only the margin between nodes, so it
-          links plate to plate instead of striking through the copy and the
-          card. The 144px must stay in step with the mb-36 node wrapper in
-          ProjectRoadmap. */}
       {!isLast && (
         <div
           ref={mobileTraceRef}

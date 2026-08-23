@@ -5,7 +5,6 @@ import { makeMotes } from '../lib/atmosphere';
 const SECTIONS = ['solo', 'group', 'hackathon'];
 
 const ProjectRoadmap = () => {
-  // Initialize state from localStorage or default to 'solo'
   const [activeSection, setActiveSection] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('projectRoadmapSection') || 'solo';
@@ -13,7 +12,6 @@ const ProjectRoadmap = () => {
     return 'solo';
   });
 
-  // Save to localStorage whenever activeSection changes
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('projectRoadmapSection', activeSection);
@@ -135,7 +133,6 @@ const ProjectRoadmap = () => {
     }
   ];
 
-  // Get current data based on active section
   const getCurrentData = () => {
     switch(activeSection) {
       case 'group': return group;
@@ -144,7 +141,6 @@ const ProjectRoadmap = () => {
     }
   };
 
-  // Get section title
   const getSectionTitle = () => {
     switch(activeSection) {
       case 'group': return 'My Group Projects';
@@ -153,9 +149,6 @@ const ProjectRoadmap = () => {
     }
   };
 
-  // This section is underground — below the horizon the coder sits on — so
-  // there are no stars here. Just dust turning slowly in the dark, and few
-  // enough of them to stay atmosphere rather than a snow globe.
   const motes = useMemo(() => makeMotes(20, 74123), []);
 
   return (
@@ -163,14 +156,10 @@ const ProjectRoadmap = () => {
       id="projects"
       className="relative min-h-screen overflow-hidden py-24"
       style={{
-        // Descending through earth. Starts on the exact ground colour the hero
-        // ends on, then just gets darker; the blue drifts out of the purple so
-        // it reads as soil rather than more sky.
         background:
           'linear-gradient(180deg, #1a0836 0%, #170a2c 14%, #120720 42%, #0d0518 72%, #0b0418 100%)'
       }}
     >
-      {/* Motes of dust, lifting slowly through the dark */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         {motes.map((mote) => (
           <span
@@ -190,16 +179,9 @@ const ProjectRoadmap = () => {
         ))}
       </div>
 
-      {/* No ambient light source down here on purpose. A warm glow used to
-          pool at the bottom of this section, which read as open air rather
-          than earth — deep ground is simply dark. The vein and the dust it
-          catches are the only light below the horizon. */}
-
       <div className="relative z-10 w-full px-8 sm:px-12 lg:px-16">
-        {/* Section selector */}
         <div className="flex justify-center mb-12">
           <div className="relative w-full max-w-[340px] rounded-lg border border-white/12 bg-white/[0.03] p-1.5">
-            {/* Sliding keycap */}
             <div
               className="pointer-events-none absolute top-1.5 bottom-1.5 rounded-lg border border-ember/40 bg-[#f7efe0] transition-[left] duration-300 ease-out"
               style={{
@@ -248,8 +230,6 @@ const ProjectRoadmap = () => {
         </div>
 
         <div className="relative">
-          {/* mb-36 (144px) is load-bearing: the stacked-layout connector in
-              ProjectNode spans exactly this gap. Change both together. */}
           {getCurrentData().map((item, index) => (
             <div key={`${activeSection}-${item.id}`} className="relative mb-36 last:mb-0">
               <ProjectNode

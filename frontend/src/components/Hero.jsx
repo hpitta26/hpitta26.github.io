@@ -5,8 +5,6 @@ const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const frame = useRef(null);
 
-  // Parallax, but coalesced into one update per frame — a raw scroll handler
-  // setting state fires far more often than the sky needs to move.
   useEffect(() => {
     const handleScroll = () => {
       if (frame.current !== null) return;
@@ -28,9 +26,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen overflow-hidden">
 
-      {/* Parallax Background Layers */}
       <div className="absolute inset-0">
-        {/* Sky Background */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -40,10 +36,6 @@ const Hero = () => {
           }}
         />
 
-        {/* Dusk wash. The source sky art is bright lavender while the rest of
-            the page is deep purple. This grades the top down to night so the
-            starfield reads, keeps a band of last light at the horizon behind
-            the coder, and lands on the ground colour at the very bottom. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -53,7 +45,6 @@ const Hero = () => {
           aria-hidden="true"
         />
 
-        {/* Drifting aurora glows in complementary tones */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div
             className="aurora-blob"
@@ -101,8 +92,6 @@ const Hero = () => {
           />
         </div>
 
-        {/* Starfield — above the screen-blended aurora so the glows cannot
-            wash it out, below the clouds so the closer banks pass in front. */}
         <div
           className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{ transform: `translateY(${scrollY * 0.16}px)` }}
@@ -124,12 +113,10 @@ const Hero = () => {
         </div>
 
 
-        {/* Drifting clouds */}
         <div
           className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{ transform: `translateY(${scrollY * 0.04}px)` }}
         >
-          {/* Deep, faint clouds high in the sky */}
           <img
             src="/assets/cloud_blue_2.svg"
             alt=""
@@ -160,7 +147,6 @@ const Hero = () => {
               animation: 'cloudDriftMed 28s ease-in-out infinite, cloudBreathe 21s ease-in-out infinite'
             }}
           />
-          {/* Mid-depth clouds */}
           <img
             src="/assets/cloud_blue_4.svg"
             alt=""
@@ -190,7 +176,6 @@ const Hero = () => {
               animation: 'cloudDriftWide 26s ease-in-out infinite, cloudBreathe 19s ease-in-out infinite'
             }}
           />
-          {/* Closer, brighter clouds framing the coder */}
           <img
             src="/assets/cloud_blue_1.svg"
             alt=""
@@ -223,8 +208,6 @@ const Hero = () => {
           />
         </div>
 
-        {/* Vignette — darkens the corners so the name holds the centre and the
-            ground seam at the bottom reads as intentional depth. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -235,14 +218,8 @@ const Hero = () => {
         />
       </div>
 
-      {/* Film grain overlay */}
       <div className="hero-grain absolute inset-0 z-10 pointer-events-none" />
 
-      {/* Hero content with Developer.
-          justify-between pins the workstation to the bottom of the viewport and
-          lets the leftover height fall as sky above it. Centring the stack and
-          padding underneath instead left a tall band of flat ground below the
-          horizon on narrow screens. */}
       <div className="relative z-20 flex h-screen flex-col items-center justify-between px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28">
         <div className="text-center max-w-4xl mx-auto">
           <div className="animate-fade-in-up">
@@ -257,9 +234,7 @@ const Hero = () => {
             >
               Henrique Pitta
             </h1>
-            {/* Standing meta, deliberately quiet: it sits between the name and
-                the line that actually says something, so it should read third. */}
-            <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 mb-7">
+              <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 mb-7">
               <h2 className="rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-star/70">
                 CS &amp; Math @{' '}
                 <a
@@ -292,8 +267,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Developer and Ground. The -2px closes a subpixel seam between the
-            artwork's ground and the section below it, which share a colour. */}
         <div
           className="relative pointer-events-none w-[180vw] sm:w-screen sm:scale-130 lg:scale-105"
           style={{ marginBottom: '-2px' }}
@@ -303,25 +276,9 @@ const Hero = () => {
             alt="Developer at workstation with ground transition"
             className="h-auto"
           />
-          {/* Coffee steam: one wavy ribbon rising from the mug and fading out.
-              --u is kept proportional to the artwork's layout width (180vw on
-              phones, 100vw above) so it stays mug-sized; the sm+ scale
-              transforms already apply to the steam, so they need no term.
-
-              The wave is drawn taller than the box and slides up by exactly one
-              period, so the loop is seamless and reads as continuous flow. The
-              fade lives in a mask on a fixed outer group — putting it on the
-              moving path would drag the fade upward along with it. */}
           <div className="coffee-steam [--u:1.8vw] sm:[--u:1vw]" aria-hidden="true">
             <svg viewBox="0 0 28 130" preserveAspectRatio="none">
               <defs>
-                {/* Near: the thick part, brightest just above the rim and gone
-                    by mid-height. Far: thin, dimmer, carries to the top.
-                    Overlaid they taper, which one stroke cannot do — stroke
-                    width is constant along a path. Both ramp up from zero at
-                    the rim: the wave slides, so whichever bend happens to sit
-                    at the rim would otherwise flick the visible source from
-                    side to side across the mug. */}
                 <linearGradient id="steamNear" x1="0" y1="130" x2="0" y2="0" gradientUnits="userSpaceOnUse">
                   <stop offset="0" stopColor="#fff" stopOpacity="0" />
                   <stop offset="0.1" stopColor="#fff" stopOpacity="0.88" />
@@ -341,12 +298,6 @@ const Hero = () => {
                   <rect x="0" y="0" width="28" height="130" fill="url(#steamFar)" />
                 </mask>
               </defs>
-              {/* Each undulation is a different height and width (26/30/34/38
-                  tall, control offsets 1.6/2.6/3.4/4.2), so the wave widens
-                  gently as it climbs and no two bends match. A perfectly
-                  regular sine slid along itself looks completely still. Keep
-                  the offsets small: the box is squashed (3.4u × 4.5u for a
-                  28×130 viewBox), which exaggerates any side-swing. */}
               <g mask="url(#steamMaskFar)">
                 <g className="steam-sway">
                   <path
