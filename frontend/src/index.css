@@ -242,7 +242,14 @@
   .trace-line {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
-    transition: stroke-dashoffset 2.2s cubic-bezier(0.65, 0, 0.35, 1);
+    transition: stroke-dashoffset 1.54s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  /* Stacked layout below Tailwind `lg` — 60% faster than the original 2.2s draw. */
+  @media (max-width: 1023px) {
+    .trace-line {
+      transition-duration: 0.88s;
+    }
   }
 
   .trace-in .trace-line {

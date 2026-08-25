@@ -87,7 +87,10 @@ const ProjectNode = ({ project, isLast, nextProject }) => {
           className={`reveal ${plateInView ? 'reveal-in' : ''} relative`}
         >
           <div ref={focusRef} className="w-full max-w-[600px] min-w-[320px] relative z-5" style={{ aspectRatio: '600/380' }}>
-            <div className="group w-full h-full rounded-2xl p-4.5 relative">
+            <div
+              className="group relative h-full w-full rounded-2xl"
+              style={{ padding: 'clamp(0.625rem, 0.4rem + 1.14vw, 1.125rem)' }}
+            >
               <div
                 className="absolute inset-0 rounded-2xl"
                 style={{
