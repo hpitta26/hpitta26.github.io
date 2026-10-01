@@ -229,6 +229,43 @@
     to   { transform: rotate(1.6deg); }
   }
 
+  /* Desk lamp flicker */
+  .lamp-flicker {
+    opacity: 0;
+    animation: lampFlicker 9s steps(1, end) infinite;
+  }
+
+  @keyframes lampFlicker {
+    0%     { opacity: 0; }
+    41%    { opacity: 0.55; }
+    41.6%  { opacity: 0; }
+    68%    { opacity: 0.85; }
+    68.5%  { opacity: 0.2; }
+    69%    { opacity: 0.9; }
+    70.2%  { opacity: 0; }
+    71%    { opacity: 0.7; }
+    71.3%  { opacity: 0; }
+    100%   { opacity: 0; }
+  }
+
+  /* The beam mirrors the shade: dims whenever the bulb does. */
+  .lamp-beam {
+    animation: lampBeam 9s steps(1, end) infinite;
+  }
+
+  @keyframes lampBeam {
+    0%     { opacity: 1; }
+    41%    { opacity: 0.45; }
+    41.6%  { opacity: 1; }
+    68%    { opacity: 0.15; }
+    68.5%  { opacity: 0.8; }
+    69%    { opacity: 0.1; }
+    70.2%  { opacity: 1; }
+    71%    { opacity: 0.3; }
+    71.3%  { opacity: 1; }
+    100%   { opacity: 1; }
+  }
+
   /* Grain */
   .hero-grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -279,7 +316,9 @@
     .mote { opacity: 0.28 !important; }
 
     .steam-flow,
-    .steam-sway {
+    .steam-sway,
+    .lamp-flicker,
+    .lamp-beam {
       animation: none !important;
     }
 

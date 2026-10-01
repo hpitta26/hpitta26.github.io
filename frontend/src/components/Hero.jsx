@@ -274,6 +274,47 @@ const Hero = () => {
             alt="Developer at workstation with ground transition"
             className="h-auto"
           />
+          {/* Faulty desk lamp: a faint beam out of the bulb */}
+          <svg
+            className="absolute inset-0 h-full w-full"
+            viewBox="0 100 2064.75 770.54"
+            preserveAspectRatio="xMidYMin meet"
+            aria-hidden="true"
+          >
+            <defs>
+              <filter id="lampSoft" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="1.2" />
+              </filter>
+              <filter id="lampBeamBlur" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="7" />
+              </filter>
+              <linearGradient id="lampBeamFade" gradientUnits="userSpaceOnUse" x1="1254.5" y1="143" x2="1114" y2="361">
+                <stop offset="0" stopColor="#fff3dc" stopOpacity="0.24" />
+                <stop offset="0.45" stopColor="#fff3dc" stopOpacity="0.08" />
+                <stop offset="1" stopColor="#fff3dc" stopOpacity="0" />
+              </linearGradient>
+              <clipPath id="lampBeamClip">
+                <polygon points="918.5,-73 1590.5,359 1266.5,863 594.5,431" />
+              </clipPath>
+            </defs>
+            <g className="lamp-beam" clipPath="url(#lampBeamClip)">
+              <polygon
+                points="1231,129 1278,157 1238,444 987,282"
+                fill="url(#lampBeamFade)"
+                filter="url(#lampBeamBlur)"
+              />
+            </g>
+            <ellipse
+              className="lamp-flicker"
+              cx="1254.5"
+              cy="143"
+              rx="25"
+              ry="10.5"
+              transform="rotate(33 1254.5 143)"
+              fill="#24232c"
+              filter="url(#lampSoft)"
+            />
+          </svg>
           <div className="coffee-steam [--u:2.4vw] sm:[--u:1vw]" aria-hidden="true">
             <svg viewBox="0 0 28 130" preserveAspectRatio="none">
               <defs>
